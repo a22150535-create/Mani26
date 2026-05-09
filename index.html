@@ -1,0 +1,1850 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 人生跳級課 · 靈性應用</title>
+<style>
+/* 字體：使用系統繁體/簡體字體堆疊，大陸完全相容 */
+
+:root {
+–c1: #D4A017; –c2: #C1440E; –c3: #FF9A3C;
+–bg: #080410; –bg2: #100820; –bg3: #180C30;
+–surface: rgba(255,255,255,0.04);
+–border: rgba(212,160,23,0.18);
+–text: #F0E6D0; –muted: #8A7060;
+–r: 14px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+
+body{
+font-family:‘PingFang TC’, ‘Microsoft JhengHei’, ‘Heiti TC’, ‘STSong’, ‘Songti SC’, serif;
+background:var(–bg);
+color:var(–text);
+min-height:100vh;
+overflow-x:hidden;
+}
+
+/* ── STARFIELD ── */
+#stars{
+position:fixed;inset:0;pointer-events:none;z-index:0;
+background:
+radial-gradient(ellipse at 50% 0%, rgba(100,60,180,0.25) 0%, transparent 60%),
+radial-gradient(ellipse at 0% 100%, rgba(193,68,14,0.15) 0%, transparent 50%),
+radial-gradient(ellipse at 100% 60%, rgba(212,160,23,0.1) 0%, transparent 40%);
+}
+.star{
+position:absolute;border-radius:50%;
+background:#fff;animation:twinkle var(–d,3s) ease-in-out infinite;
+animation-delay:var(–dl,0s);
+}
+@keyframes twinkle{0%,100%{opacity:0.1;transform:scale(1);}50%{opacity:0.9;transform:scale(1.4);}}
+
+/* ── NAV ── */
+#nav{
+position:fixed;top:0;left:0;right:0;z-index:100;
+background:rgba(8,4,16,0.88);
+backdrop-filter:blur(20px);
+border-bottom:1px solid var(–border);
+height:60px;
+display:flex;align-items:center;
+padding:0 20px;gap:4px;
+}
+.nav-logo{
+font-family:‘Georgia’, ‘Palatino’, ‘Book Antiqua’, ‘STSong’, serif;
+font-size:14px;color:var(–c1);
+letter-spacing:.12em;margin-right:auto;
+white-space:nowrap;
+}
+.nav-btn{
+padding:6px 10px;border-radius:20px;
+background:transparent;border:1px solid transparent;
+font-size:11px;color:var(–muted);cursor:pointer;
+transition:all .2s;white-space:nowrap;
+font-family:‘PingFang TC’, ‘Microsoft JhengHei’, ‘Heiti TC’, ‘STSong’, ‘Songti SC’, serif;
+}
+.nav-btn:hover,.nav-btn.active{
+background:rgba(212,160,23,0.12);
+border-color:var(–border);color:var(–c1);
+}
+.lang-bar{
+display:flex;border:1px solid var(–border);border-radius:20px;overflow:hidden;
+margin-left:8px;
+}
+.lang-btn{
+padding:5px 10px;font-size:10px;font-weight:700;
+background:transparent;border:none;cursor:pointer;
+color:var(–muted);transition:all .2s;letter-spacing:.05em;
+}
+.lang-btn.active{background:var(–c2);color:#fff;}
+
+/* ── PAGES ── */
+.page{
+display:none;min-height:100vh;
+padding:80px 0 60px;
+position:relative;z-index:1;
+}
+.page.active{display:block;}
+
+/* ── HOME PAGE ── */
+#page-home{
+display:none;align-items:center;justify-content:center;flex-direction:column;
+text-align:center;padding:60px 20px;
+}
+#page-home.active{display:flex;}
+
+.home-orb{
+width:200px;height:200px;border-radius:50%;
+background:radial-gradient(ellipse at 40% 35%,#FF9A3C 0%,#C1440E 35%,#6A0A40 70%,#0F0820 100%);
+box-shadow:0 0 80px rgba(193,68,14,0.5),0 0 160px rgba(212,160,23,0.2);
+margin:0 auto 36px;
+animation:orb-pulse 4s ease-in-out infinite;
+position:relative;overflow:hidden;
+cursor:pointer;
+}
+.home-orb::after{
+content:‘馬’;
+position:absolute;inset:0;
+display:flex;align-items:center;justify-content:center;
+font-size:80px;color:rgba(255,255,255,0.15);
+font-weight:900;
+}
+@keyframes orb-pulse{
+0%,100%{box-shadow:0 0 80px rgba(193,68,14,0.5),0 0 160px rgba(212,160,23,0.2);}
+50%{box-shadow:0 0 120px rgba(193,68,14,0.7),0 0 220px rgba(212,160,23,0.35);}
+}
+.home-year{font-family:‘Georgia’, ‘Palatino’, ‘Book Antiqua’, ‘STSong’, serif;font-size:11px;letter-spacing:.6em;color:var(–c1);opacity:.7;margin-bottom:12px;}
+.home-title{font-size:clamp(32px,6vw,52px);font-weight:900;letter-spacing:.08em;line-height:1.2;margin-bottom:8px;
+background:linear-gradient(135deg,#FFF8EE,var(–c3),var(–c1));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.home-sub{font-size:14px;color:var(–muted);letter-spacing:.3em;margin-bottom:40px;}
+.home-grid{
+display:grid;grid-template-columns:repeat(2,1fr);gap:14px;
+max-width:420px;width:100%;margin:0 auto;
+}
+.home-card{
+background:var(–surface);
+border:1px solid var(–border);border-radius:var(–r);
+padding:20px;cursor:pointer;text-align:left;
+transition:all .3s;position:relative;overflow:hidden;
+}
+.home-card::before{
+content:’’;position:absolute;inset:0;
+background:linear-gradient(135deg,rgba(212,160,23,0.06),transparent);
+opacity:0;transition:opacity .3s;
+}
+.home-card:hover{border-color:rgba(212,160,23,0.4);transform:translateY(-3px);
+box-shadow:0 12px 40px rgba(0,0,0,0.4);}
+.home-card:hover::before{opacity:1;}
+.hc-icon{font-size:28px;margin-bottom:10px;}
+.hc-title{font-size:14px;font-weight:700;color:var(–c1);margin-bottom:4px;}
+.hc-desc{font-size:11px;color:var(–muted);line-height:1.6;}
+
+/* ── SECTION PAGES ── */
+.page-inner{max-width:760px;margin:0 auto;padding:0 20px;}
+
+/* Chapter header */
+.ch-header{
+text-align:center;padding:40px 20px 36px;
+border-bottom:1px solid var(–border);
+margin-bottom:40px;
+}
+.ch-badge{
+display:inline-block;font-family:‘Georgia’, ‘Palatino’, ‘Book Antiqua’, ‘STSong’, serif;
+font-size:9px;letter-spacing:.5em;color:var(–c2);
+background:rgba(193,68,14,0.1);
+padding:4px 14px;border-radius:20px;
+text-transform:uppercase;margin-bottom:12px;
+}
+.ch-title{
+font-size:clamp(24px,4vw,36px);font-weight:900;
+letter-spacing:.06em;line-height:1.3;
+background:linear-gradient(135deg,#FFF8EE 30%,var(–c1));
+-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+margin-bottom:10px;
+}
+.ch-sub{font-size:13px;color:var(–muted);letter-spacing:.2em;}
+
+/* Section block */
+.sec-block{
+background:var(–surface);
+border:1px solid var(–border);
+border-radius:var(–r);
+padding:28px 30px;
+margin-bottom:20px;
+position:relative;
+overflow:hidden;
+}
+.sec-block::before{
+content:’’;position:absolute;top:0;left:0;right:0;height:2px;
+background:linear-gradient(90deg,var(–c2),var(–c1),transparent);
+}
+.sec-num{font-size:9px;letter-spacing:.4em;color:var(–c2);opacity:.7;margin-bottom:6px;}
+.sec-title{font-size:18px;font-weight:700;color:var(–c1);margin-bottom:16px;line-height:1.4;}
+.prose p{
+font-size:15px;line-height:2;color:#D0C0A8;
+margin-bottom:16px;text-align:justify;
+font-weight:300;
+}
+.prose p:first-child{text-indent:0;}
+
+/* Callout */
+.callout{
+border-radius:var(–r);padding:18px 22px;margin:20px 0;
+font-size:14px;line-height:1.9;
+}
+.callout-gold{background:rgba(212,160,23,0.08);border:1px solid rgba(212,160,23,0.25);border-left:4px solid var(–c1);color:#D4C090;}
+.callout-fire{background:rgba(193,68,14,0.08);border:1px solid rgba(193,68,14,0.25);border-left:4px solid var(–c2);color:#D4A090;}
+.callout-dark{
+background:linear-gradient(135deg,rgba(212,160,23,0.05),rgba(193,68,14,0.05));
+border:1px solid var(–border);text-align:center;
+font-size:16px;color:var(–c3);font-weight:700;letter-spacing:.06em;
+line-height:1.8;
+}
+
+/* Key points */
+.kp-list{list-style:none;padding:0;}
+.kp-list li{
+padding:10px 0 10px 24px;position:relative;
+border-bottom:1px solid rgba(212,160,23,0.08);
+font-size:14px;color:#C8B898;line-height:1.8;
+}
+.kp-list li:last-child{border-bottom:none;}
+.kp-list li::before{content:‘◆’;position:absolute;left:0;top:14px;color:var(–c2);font-size:8px;}
+.kp-list li strong{color:var(–c1);}
+
+/* Homework */
+.hw{
+background:linear-gradient(135deg,rgba(100,60,180,0.1),rgba(193,68,14,0.08));
+border:1px solid rgba(150,100,255,0.2);
+border-radius:var(–r);padding:22px 26px;margin:24px 0;
+position:relative;overflow:hidden;
+}
+.hw::before{content:’✏️ ’;font-size:16px;}
+.hw-label{font-size:9px;letter-spacing:.45em;color:#9A80FF;opacity:.8;margin-bottom:10px;display:block;}
+.hw-text{font-size:14px;color:#C8B8E8;line-height:1.9;}
+
+/* TTS bar */
+#tts-bar{
+position:fixed;bottom:0;left:0;right:0;z-index:100;
+background:rgba(8,4,16,0.92);
+backdrop-filter:blur(20px);
+border-top:1px solid var(–border);
+padding:10px 20px;
+display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+}
+.tts-btn{
+padding:8px 18px;border-radius:20px;border:none;cursor:pointer;
+font-size:12px;font-weight:700;letter-spacing:.05em;
+font-family:‘PingFang TC’, ‘Microsoft JhengHei’, ‘Heiti TC’, ‘STSong’, ‘Songti SC’, serif;transition:all .2s;
+}
+.tts-play{background:var(–c2);color:#fff;}
+.tts-play:hover{background:var(–c3);}
+.tts-stop{background:transparent;border:1px solid var(–border);color:var(–muted);}
+.tts-stop:hover{border-color:var(–c2);color:var(–c2);}
+.tts-speed{display:flex;align-items:center;gap:6px;}
+.tts-speed label{font-size:10px;color:var(–muted);}
+#spd{accent-color:var(–c1);width:70px;}
+#spd-val{font-size:10px;color:var(–muted);min-width:30px;}
+.tts-progress-wrap{flex:1;height:3px;background:rgba(255,255,255,0.06);border-radius:2px;min-width:60px;}
+#tts-prog{height:100%;background:linear-gradient(90deg,var(–c2),var(–c1));border-radius:2px;width:0;transition:width .4s;}
+.tts-font{display:flex;align-items:center;gap:5px;margin-left:auto;}
+.fs-btn{
+width:26px;height:26px;border-radius:50%;border:1px solid var(–border);
+background:transparent;color:var(–muted);cursor:pointer;font-size:12px;
+display:flex;align-items:center;justify-content:center;transition:all .2s;
+}
+.fs-btn:hover{border-color:var(–c1);color:var(–c1);}
+#fs-disp{font-size:10px;color:var(–muted);min-width:26px;text-align:center;}
+
+/* ── ZODIAC PAGE ── */
+.zodiac-hero{
+text-align:center;padding:36px 20px 28px;
+}
+.zodiac-selector{
+display:grid;grid-template-columns:repeat(6,1fr);
+gap:8px;max-width:600px;margin:0 auto 36px;
+}
+.z-pick{
+background:var(–surface);
+border:1px solid var(–border);border-radius:10px;
+padding:10px 6px;cursor:pointer;text-align:center;
+transition:all .25s;
+}
+.z-pick:hover,.z-pick.active{
+background:rgba(212,160,23,0.12);
+border-color:var(–c1);
+transform:translateY(-2px);
+}
+.z-pick .z-ani{font-size:22px;margin-bottom:3px;}
+.z-pick .z-name{font-size:11px;color:var(–c1);}
+.z-pick .z-yr{font-size:9px;color:var(–muted);}
+
+/* Zodiac detail panel */
+#z-detail{
+background:var(–surface);
+border:1px solid var(–border);
+border-radius:var(–r);overflow:hidden;
+display:none;
+}
+#z-detail.show{display:block;}
+.z-detail-header{
+padding:28px 30px 22px;
+background:linear-gradient(135deg,rgba(193,68,14,0.12),rgba(212,160,23,0.06));
+border-bottom:1px solid var(–border);
+display:flex;align-items:center;gap:20px;
+}
+.z-big-ani{font-size:56px;line-height:1;}
+.z-header-info h2{
+font-size:26px;font-weight:900;color:var(–c1);margin-bottom:4px;
+}
+.z-tag{
+display:inline-block;font-size:10px;letter-spacing:.15em;
+padding:3px 10px;border-radius:12px;margin-right:6px;margin-bottom:4px;
+}
+.z-tag-fire{background:rgba(193,68,14,0.2);color:#FF9A3C;border:1px solid rgba(193,68,14,0.3);}
+.z-tag-water{background:rgba(30,100,200,0.2);color:#80C0FF;border:1px solid rgba(30,100,200,0.3);}
+.z-tag-warn{background:rgba(200,50,50,0.15);color:#FF8080;border:1px solid rgba(200,50,50,0.3);}
+.z-tag-gold{background:rgba(212,160,23,0.15);color:var(–c1);border:1px solid var(–border);}
+
+.z-tabs{
+display:flex;border-bottom:1px solid var(–border);
+padding:0 20px;overflow-x:auto;
+}
+.z-tab{
+padding:12px 16px;font-size:12px;color:var(–muted);
+cursor:pointer;border-bottom:2px solid transparent;
+transition:all .2s;white-space:nowrap;
+}
+.z-tab.active{color:var(–c1);border-bottom-color:var(–c1);}
+.z-tab-content{display:none;padding:24px 28px;}
+.z-tab-content.active{display:block;}
+.z-fortune-grid{
+display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:20px;
+}
+.zf-card{
+background:rgba(255,255,255,0.03);
+border:1px solid var(–border);border-radius:10px;
+padding:16px;text-align:center;
+}
+.zf-icon{font-size:24px;margin-bottom:6px;}
+.zf-cat{font-size:10px;letter-spacing:.2em;color:var(–muted);margin-bottom:6px;}
+.zf-stars{font-size:14px;color:var(–c1);margin-bottom:6px;}
+.zf-tip{font-size:12px;color:#B0A090;line-height:1.7;}
+.z-action-box{
+background:linear-gradient(135deg,rgba(212,160,23,0.06),rgba(193,68,14,0.04));
+border:1px solid var(–border);border-radius:10px;
+padding:18px 20px;margin-top:16px;
+}
+.z-action-title{font-size:11px;letter-spacing:.3em;color:var(–c1);margin-bottom:12px;}
+.z-action-list{list-style:none;}
+.z-action-list li{
+font-size:13px;color:#C8B898;line-height:1.85;
+padding:6px 0 6px 20px;position:relative;
+border-bottom:1px solid rgba(212,160,23,0.06);
+}
+.z-action-list li:last-child{border:none;}
+.z-action-list li::before{content:‘▸’;position:absolute;left:0;color:var(–c2);}
+
+/* ── CARD PAGE ── */
+.card-page-hero{
+text-align:center;padding:36px 20px 20px;
+}
+.card-date-display{
+font-size:11px;letter-spacing:.3em;color:var(–muted);margin-bottom:28px;
+}
+.card-deck-area{
+position:relative;height:260px;margin:0 auto 32px;max-width:380px;
+}
+.card-deck{
+position:absolute;
+width:160px;height:220px;
+border-radius:14px;
+background:linear-gradient(135deg,#1A0A30,#0D1840,#1A0A30);
+border:1px solid rgba(150,100,255,0.3);
+cursor:pointer;
+transition:all .4s cubic-bezier(.34,1.56,.64,1);
+box-shadow:0 8px 40px rgba(0,0,0,0.6);
+overflow:hidden;
+}
+.card-deck::before{
+content:’’;position:absolute;inset:0;
+background:repeating-linear-gradient(
+45deg,
+rgba(150,100,255,0.04) 0px,
+rgba(150,100,255,0.04) 1px,
+transparent 1px,
+transparent 8px
+);
+}
+.card-deck-back{
+position:absolute;inset:0;
+display:flex;flex-direction:column;
+align-items:center;justify-content:center;gap:8px;
+}
+.card-deck-back .symbol{font-size:48px;filter:drop-shadow(0 0 12px rgba(150,100,255,0.5));}
+.card-deck-back .deck-text{font-family:‘Georgia’, ‘Palatino’, ‘Book Antiqua’, ‘STSong’, serif;font-size:9px;letter-spacing:.3em;color:rgba(150,100,255,0.6);}
+
+/* Stacked card offsets */
+.card-deck:nth-child(1){left:50%;transform:translateX(-50%) rotate(-3deg);}
+.card-deck:nth-child(2){left:50%;transform:translateX(-45%) rotate(2deg);}
+.card-deck:nth-child(3){left:50%;transform:translateX(-55%) rotate(-1deg);}
+
+.card-deck:hover{transform:translateX(-50%) rotate(-3deg) translateY(-8px);}
+
+.draw-btn{
+display:block;margin:0 auto;
+padding:14px 40px;border-radius:30px;
+background:linear-gradient(135deg,var(–c2),var(–c1));
+border:none;cursor:pointer;
+font-size:14px;font-weight:700;color:#fff;
+letter-spacing:.15em;
+font-family:‘PingFang TC’, ‘Microsoft JhengHei’, ‘Heiti TC’, ‘STSong’, ‘Songti SC’, serif;
+box-shadow:0 6px 30px rgba(193,68,14,0.4);
+transition:all .3s;
+}
+.draw-btn:hover{transform:translateY(-2px);box-shadow:0 10px 40px rgba(193,68,14,0.5);}
+.draw-btn:active{transform:scale(.97);}
+
+/* Drawn card result */
+#card-result{
+display:none;
+max-width:560px;margin:0 auto;
+}
+#card-result.show{display:block;animation:card-reveal .6s cubic-bezier(.34,1.4,.64,1);}
+@keyframes card-reveal{from{opacity:0;transform:translateY(30px) scale(.95);}to{opacity:1;transform:none;}}
+
+.card-display{
+background:linear-gradient(160deg,var(–bg2),var(–bg3));
+border:1px solid rgba(150,100,255,0.3);
+border-radius:16px;overflow:hidden;
+margin-bottom:20px;
+}
+.card-top{
+padding:28px;text-align:center;
+background:linear-gradient(135deg,rgba(150,100,255,0.1),rgba(193,68,14,0.08));
+border-bottom:1px solid rgba(150,100,255,0.15);
+}
+.card-symbol{font-size:64px;margin-bottom:10px;filter:drop-shadow(0 0 20px rgba(212,160,23,0.4));}
+.card-name{font-size:24px;font-weight:900;color:var(–c1);letter-spacing:.1em;margin-bottom:6px;}
+.card-subtitle{font-size:12px;letter-spacing:.2em;color:var(–muted);}
+.card-body{padding:24px 28px;}
+.card-message{
+font-size:16px;line-height:2;color:var(–text);
+text-align:center;margin-bottom:20px;font-weight:300;
+}
+.card-affirmation{
+background:rgba(212,160,23,0.06);
+border:1px solid var(–border);border-radius:10px;
+padding:16px 20px;text-align:center;
+font-size:15px;color:var(–c3);font-weight:700;
+letter-spacing:.05em;line-height:1.8;margin-bottom:16px;
+}
+.card-action{
+background:rgba(150,100,255,0.06);
+border:1px solid rgba(150,100,255,0.2);border-radius:10px;
+padding:14px 18px;
+}
+.card-action-title{font-size:10px;letter-spacing:.35em;color:#9A80FF;margin-bottom:8px;}
+.card-action-text{font-size:13px;color:#C8B8E8;line-height:1.85;}
+
+.redraw-btn{
+display:block;margin:16px auto 0;
+padding:10px 28px;border-radius:20px;
+background:transparent;border:1px solid var(–border);
+color:var(–muted);font-size:12px;cursor:pointer;
+font-family:‘PingFang TC’, ‘Microsoft JhengHei’, ‘Heiti TC’, ‘STSong’, ‘Songti SC’, serif;
+transition:all .2s;
+}
+.redraw-btn:hover{border-color:var(–c1);color:var(–c1);}
+
+/* ── COURSE PAGE ── */
+.course-nav{
+display:flex;gap:8px;flex-wrap:wrap;
+padding:0 20px 24px;
+justify-content:center;
+}
+.c-tab{
+padding:8px 16px;border-radius:20px;font-size:12px;
+background:var(–surface);border:1px solid var(–border);
+color:var(–muted);cursor:pointer;transition:all .2s;
+}
+.c-tab.active{background:rgba(212,160,23,0.12);border-color:var(–c1);color:var(–c1);}
+.c-section{display:none;}
+.c-section.active{display:block;}
+
+/* ── FULL TEXT PAGE ── */
+.full-toc {
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: var(–r);
+padding: 20px 24px;
+margin-bottom: 32px;
+}
+.full-toc-title {
+font-size: 11px; letter-spacing:.35em; color:var(–c1);
+margin-bottom: 14px; font-weight:700;
+}
+.full-toc-links { display:flex; flex-wrap:wrap; gap:8px; }
+.full-toc-link {
+padding: 5px 12px; border-radius: 16px;
+background: transparent; border: 1px solid var(–border);
+font-size: 11px; color: var(–muted); cursor: pointer;
+transition: all .2s; text-decoration: none; display:inline-block;
+}
+.full-toc-link:hover { border-color:var(–c1); color:var(–c1); }
+
+.full-chapter {
+margin-bottom: 56px;
+scroll-margin-top: 80px;
+}
+.full-chapter-header {
+border-left: 4px solid var(–c2);
+padding: 6px 0 6px 18px;
+margin-bottom: 28px;
+}
+.full-chapter-num {
+font-size:9px; letter-spacing:.4em; color:var(–c2); opacity:.8; margin-bottom:4px;
+}
+.full-chapter-title {
+font-size: clamp(18px,3vw,26px); font-weight:900; color:var(–c1);
+line-height:1.3; letter-spacing:.04em;
+}
+.full-section { margin-bottom: 36px; scroll-margin-top: 80px; }
+.full-section-title {
+font-size: 15px; font-weight:700; color:#D0A060;
+margin-bottom: 16px; padding-left:14px;
+border-left: 2px solid rgba(212,160,23,0.4);
+line-height:1.5;
+}
+.full-body {
+font-size: var(–full-fs, 15px);
+line-height: 2.1;
+color: #C8B898;
+font-weight: 300;
+}
+.full-body p {
+margin-bottom: 18px;
+text-align: justify;
+}
+.full-hw {
+background: linear-gradient(135deg,rgba(150,100,255,0.07),rgba(193,68,14,0.05));
+border: 1px solid rgba(150,100,255,0.2);
+border-radius: var(–r);
+padding: 18px 22px;
+margin-top: 20px;
+}
+.full-hw-label {
+font-size:9px; letter-spacing:.45em; color:#9A80FF; margin-bottom:8px; display:block;
+}
+.full-hw-text { font-size:14px; color:#C8B8E8; line-height:1.9; }
+.full-divider {
+text-align:center; margin: 40px 0; position:relative;
+}
+.full-divider::before {
+content:’’; position:absolute; top:50%; left:0; right:0;
+height:1px; background:linear-gradient(90deg,transparent,rgba(212,160,23,.3),transparent);
+}
+.full-divider span {
+position:relative; background:var(–bg);
+padding:0 16px; font-size:16px; color:var(–c1); opacity:.6;
+}
+.full-closing {
+background: linear-gradient(135deg,rgba(212,160,23,0.06),rgba(193,68,14,0.04));
+border:1px solid var(–border); border-radius:var(–r);
+padding:32px 36px; text-align:center; margin-top:48px;
+}
+.full-closing p { font-size:17px; color:var(–c3); line-height:2.1; font-weight:400; }
+
+/* ── FULL PAGE RESPONSIVE ── */
+@media(max-width:600px){
+.full-chapter-header{padding-left:12px;}
+.full-body{font-size:14px;}
+}
+/* ── FULL TEXT PAGE ── */.full-toc{background:var(–surface);border:1px solid var(–border);border-radius:var(–r);padding:20px 24px;margin-bottom:32px;}.full-toc-title{font-size:11px;letter-spacing:.35em;color:var(–c1);margin-bottom:14px;font-weight:700;}.full-toc-links{display:flex;flex-wrap:wrap;gap:8px;}.full-toc-link{padding:5px 12px;border-radius:16px;background:transparent;border:1px solid var(–border);font-size:11px;color:var(–muted);cursor:pointer;transition:all .2s;display:inline-block;}.full-toc-link:hover{border-color:var(–c1);color:var(–c1);}.full-chapter{margin-bottom:56px;scroll-margin-top:80px;}.full-chapter-header{border-left:4px solid var(–c2);padding:6px 0 6px 18px;margin-bottom:28px;}.full-chapter-num{font-size:9px;letter-spacing:.4em;color:var(–c2);opacity:.8;margin-bottom:4px;}.full-chapter-title{font-size:clamp(18px,3vw,26px);font-weight:900;color:var(–c1);line-height:1.3;letter-spacing:.04em;}.full-section{margin-bottom:36px;scroll-margin-top:80px;}.full-section-title{font-size:15px;font-weight:700;color:#D0A060;margin-bottom:16px;padding-left:14px;border-left:2px solid rgba(212,160,23,.4);line-height:1.5;}.full-body{font-size:15px;line-height:2.1;color:#C8B898;font-weight:300;}.full-body p{margin-bottom:18px;text-align:justify;}.full-hw{background:linear-gradient(135deg,rgba(150,100,255,.07),rgba(193,68,14,.05));border:1px solid rgba(150,100,255,.2);border-radius:var(–r);padding:18px 22px;margin-top:20px;}.full-hw-label{font-size:9px;letter-spacing:.45em;color:#9A80FF;margin-bottom:8px;display:block;}.full-hw-text{font-size:14px;color:#C8B8E8;line-height:1.9;}.full-divider{text-align:center;margin:40px 0;position:relative;}.full-divider::before{content:’’;position:absolute;top:50%;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(212,160,23,.3),transparent);}.full-divider span{position:relative;background:var(–bg);padding:0 16px;font-size:16px;color:var(–c1);opacity:.6;}.full-closing{background:linear-gradient(135deg,rgba(212,160,23,.06),rgba(193,68,14,.04));border:1px solid var(–border);border-radius:var(–r);padding:32px 36px;text-align:center;margin-top:48px;}.full-closing p{font-size:17px;color:var(–c3);line-height:2.1;font-weight:400;}
+@keyframes float-in{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
+.page.active .sec-block,.page.active .z-pick,.page.active .home-card{
+animation:float-in .4s ease both;
+}
+.page.active .sec-block:nth-child(2){animation-delay:.05s;}
+.page.active .sec-block:nth-child(3){animation-delay:.1s;}
+.page.active .sec-block:nth-child(4){animation-delay:.15s;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:600px){
+.nav-logo{font-size:12px;}
+.nav-btn{font-size:10px;padding:5px 7px;}
+.lang-btn{padding:4px 7px;font-size:9px;}
+.zodiac-selector{grid-template-columns:repeat(4,1fr);}
+.z-fortune-grid{grid-template-columns:1fr;}
+.sec-block{padding:20px 18px;}
+#tts-bar{gap:8px;}
+.tts-progress-wrap{display:none;}
+}
+
+/* ── LANG ── */
+.tc,.sc,.en{display:none;}
+body.lang-tc .tc{display:revert;}
+body.lang-sc .sc{display:revert;}
+body.lang-en .en{display:revert;}
+body.lang-sc{font-family:‘PingFang SC’, ‘Microsoft YaHei’, ‘Heiti SC’, ‘STSong’, ‘Noto Sans SC’, ‘Source Han Sans SC’, serif;}
+
+/* special inline spans */
+span.tc,span.sc,span.en{display:none;}
+body.lang-tc span.tc{display:inline;}
+body.lang-sc span.sc{display:inline;}
+body.lang-en span.en{display:inline;}
+</style>
+
+</head>
+<body class="lang-tc">
+
+<!-- Starfield -->
+
+<div id="stars"></div>
+
+<!-- NAV -->
+
+<nav id="nav">
+  <div class="nav-logo">✦ 2026 <span class="tc">跳級課</span><span class="sc">跳级课</span><span class="en">Life Upgrade</span></div>
+  <button class="nav-btn active" onclick="goPage('home')"><span class="tc">首頁</span><span class="sc">首页</span><span class="en">Home</span></button>
+  <button class="nav-btn" onclick="goPage('course')"><span class="tc">課程</span><span class="sc">课程</span><span class="en">Course</span></button>
+  <button class="nav-btn" onclick="goPage('zodiac')"><span class="tc">生肖</span><span class="sc">生肖</span><span class="en">Zodiac</span></button>
+  <button class="nav-btn" onclick="goPage('card')"><span class="tc">抽牌</span><span class="sc">抽牌</span><span class="en">Cards</span></button>
+  <button class="nav-btn" onclick="goPage('full')" style="border-color:rgba(212,160,23,0.3);color:rgba(212,160,23,0.8);"><span class="tc">📜 完整版</span><span class="sc">📜 完整版</span><span class="en">📜 Full</span></button>
+  <div class="lang-bar">
+    <button class="lang-btn active" onclick="setLang('tc',this)">繁</button>
+    <button class="lang-btn" onclick="setLang('sc',this)">简</button>
+    <button class="lang-btn" onclick="setLang('en',this)">EN</button>
+  </div>
+</nav>
+
+<!-- ══════ HOME PAGE ══════ -->
+
+<div class="page active" id="page-home">
+  <div class="home-orb" onclick="goPage('card')"></div>
+  <div class="home-year tc">二〇二六丙午年</div>
+  <div class="home-year sc">二〇二六丙午年</div>
+  <div class="home-year en">2026 · Year of the Red Horse</div>
+  <h1 class="home-title tc">全方位人生跳級課</h1>
+  <h1 class="home-title sc">全方位人生跳级课</h1>
+  <h1 class="home-title en">Life Upgrade Course</h1>
+  <p class="home-sub tc">趨勢 × 能量 × 運勢</p>
+  <p class="home-sub sc">趋势 × 能量 × 运势</p>
+  <p class="home-sub en">Trends × Energy × Destiny</p>
+  <div class="home-grid">
+    <div class="home-card" onclick="goPage('course')">
+      <div class="hc-icon">📖</div>
+      <div class="hc-title tc">課程內容</div>
+      <div class="hc-title sc">课程内容</div>
+      <div class="hc-title en">Course</div>
+      <div class="hc-desc tc">五大章節 · 能量·趨勢·運勢全解析</div>
+      <div class="hc-desc sc">五大章节 · 能量·趋势·运势全解析</div>
+      <div class="hc-desc en">5 Chapters · Full analysis</div>
+    </div>
+    <div class="home-card" onclick="goPage('zodiac')">
+      <div class="hc-icon">🐴</div>
+      <div class="hc-title tc">生肖運勢</div>
+      <div class="hc-title sc">生肖运势</div>
+      <div class="hc-title en">Zodiac Fortune</div>
+      <div class="hc-desc tc">12生肖 · 金錢桃花健康工作</div>
+      <div class="hc-desc sc">12生肖 · 金钱桃花健康工作</div>
+      <div class="hc-desc en">12 Signs · All life areas</div>
+    </div>
+    <div class="home-card" onclick="goPage('card')" style="grid-column:span 2;">
+      <div class="hc-icon">🃏</div>
+      <div class="hc-title tc">每日抽卡 · 宇宙訊息</div>
+      <div class="hc-title sc">每日抽卡 · 宇宙讯息</div>
+      <div class="hc-title en">Daily Card · Cosmic Message</div>
+      <div class="hc-desc tc">每天一張牌，接收今日能量指引與行動建議</div>
+      <div class="hc-desc sc">每天一张牌，接收今日能量指引与行动建议</div>
+      <div class="hc-desc en">One card a day — receive energy guidance & action for today</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ COURSE PAGE ══════ -->
+
+<div class="page" id="page-course">
+<div class="page-inner">
+  <div class="ch-header">
+    <div class="ch-badge">2026 COURSE</div>
+    <h1 class="ch-title tc">全方位人生跳級課</h1>
+    <h1 class="ch-title sc">全方位人生跳级课</h1>
+    <h1 class="ch-title en">Life Upgrade Course 2026</h1>
+    <p class="ch-sub tc">主講：莫子</p>
+    <p class="ch-sub sc">主讲：莫子</p>
+    <p class="ch-sub en">Instructor: Mo Zi</p>
+  </div>
+
+  <div class="course-nav">
+    <button class="c-tab active" onclick="cTab('c1',this)"><span class="tc">第一章 赤馬大運</span><span class="sc">第一章 赤马大运</span><span class="en">Ch.1 Red Horse</span></button>
+    <button class="c-tab" onclick="cTab('c2',this)"><span class="tc">第二章 趨勢</span><span class="sc">第二章 趋势</span><span class="en">Ch.2 Trends</span></button>
+    <button class="c-tab" onclick="cTab('c3',this)"><span class="tc">第三章 能量場</span><span class="sc">第三章 能量场</span><span class="en">Ch.3 Energy</span></button>
+    <button class="c-tab" onclick="cTab('c4',this)"><span class="tc">第四章 生肖攻略</span><span class="sc">第四章 生肖攻略</span><span class="en">Ch.4 Zodiac</span></button>
+    <button class="c-tab" onclick="cTab('c5',this)"><span class="tc">第五章 太歲解析</span><span class="sc">第五章 太岁解析</span><span class="en">Ch.5 Tai Sui</span></button>
+  </div>
+
+  <!-- CH1 -->
+
+  <div class="c-section active" id="c1">
+    <div class="sec-block">
+      <div class="sec-num">1.1</div>
+      <div class="sec-title tc">2026年為什麼是改變黃金年？</div>
+      <div class="sec-title sc">2026年为什么是改变黄金年？</div>
+      <div class="sec-title en">Why Is 2026 the Golden Year for Change?</div>
+      <div class="prose">
+        <p class="tc">2026–2027赤馬紅羊大運，是宇宙為所有人開設的跳級通道。時間不是線性的——它是振動頻率。進入2026，地球能量正在暴力加速。</p>
+        <p class="sc">2026–2027赤马红羊大运，是宇宙为所有人开设的跳级通道。时间不是线性的——它是振动频率。进入2026，地球能量正在暴力加速。</p>
+        <p class="en">The 2026–2027 Red Horse era is a cosmic shortcut for everyone. Time isn't linear — it's vibration. As we enter 2026, Earth's energy is undergoing violent acceleration.</p>
+      </div>
+      <div class="callout callout-dark tc">赤馬能量 = 創造力 + 行動力 + 顯化速度 × 2</div>
+      <div class="callout callout-dark sc">赤马能量 = 创造力 + 行动力 + 显化速度 × 2</div>
+      <div class="callout callout-dark en">Red Horse Energy = Creativity + Action + Manifestation Speed × 2</div>
+      <div class="prose">
+        <p class="tc">「赤」代表五行之火，「馬」代表急速行動。過去需要十年的顯化，在2026年的高頻狀態下，可能壓縮到數週。但惡念也會以同等速度顯化——內心純淨度是最重要的前提。</p>
+        <p class="sc">「赤」代表五行之火，「马」代表急速行动。过去需要十年的显化，在2026年的高频状态下，可能压缩到数周。但恶念也会以同等速度显化——内心纯净度是最重要的前提。</p>
+        <p class="en">"Red" = Fire in Five Elements. "Horse" = swift action. What took ten years may manifest in weeks in a high-frequency state. But negative thoughts manifest equally fast — inner purity is the foundation of everything.</p>
+      </div>
+    </div>
+    <div class="sec-block">
+      <div class="sec-num">核心技術</div>
+      <div class="sec-title tc">四大能量操盤技術</div>
+      <div class="sec-title sc">四大能量操盘技术</div>
+      <div class="sec-title en">4 Core Energy Techniques</div>
+      <ul class="kp-list">
+        <li><strong class="tc">意識檢定</strong><strong class="sc">意识检定</strong><strong class="en">Belief Auditing</strong><span class="tc"> — 每天過濾焦慮，告訴自己：那只是集體意識的投影，不是我的實相。</span><span class="sc"> — 每天过滤焦虑，告诉自己：那只是集体意识的投影，不是我的实相。</span><span class="en"> — Daily filter: "That's only collective projection, not my reality."</span></li>
+        <li><strong class="tc">晨間呼吸錨定</strong><strong class="sc">晨间呼吸锚定</strong><strong class="en">Morning Breath Anchor</strong><span class="tc"> — 早晨深呼吸三次，吸入赤馬能量，吐氣時把今年最想達成的畫面推入能量場。</span><span class="sc"> — 早晨深呼吸三次，吸入赤马能量，吐气时把今年最想达成的画面推入能量场。</span><span class="en"> — 3 deep breaths before touching your phone. Inhale Red Horse fire; exhale your vision into the field.</span></li>
+        <li><strong class="tc">三秒法則</strong><strong class="sc">三秒法则</strong><strong class="en">3-Second Rule</strong><span class="tc"> — 靈感出現的三秒內做出一個物理動作，防止能量冷卻。</span><span class="sc"> — 灵感出现的三秒内做出一个物理动作，防止能量冷却。</span><span class="en"> — Within 3 seconds of an impulse, make one physical move. Energy cools after 3 days.</span></li>
+        <li><strong class="tc">信念快速消融</strong><strong class="sc">信念快速消融</strong><strong class="en">Rapid Belief Dissolution</strong><span class="tc"> — 感到恐懼時，對身體緊繃的部位說：「我看見你了，但我選擇回歸平靜。」</span><span class="sc"> — 感到恐惧时，对身体紧绷的部位说：「我看见你了，但我选择回归平静。」</span><span class="en"> — When fear arises, say to the tension: "I see you. I now choose peace."</span></li>
+      </ul>
+      <div class="hw">
+        <span class="hw-label tc">下課作業</span><span class="hw-label sc">下课作业</span><span class="hw-label en">HOMEWORK</span>
+        <p class="hw-text tc">在接下來的24小時裡，找出一個你拖延很久的計劃，在今天結束前完成它的第一步。感受當你動起來時心情是否輕鬆了——那就是赤馬能量開始共振的信號。</p>
+        <p class="hw-text sc">在接下来的24小时里，找出一个你拖延很久的计划，在今天结束前完成它的第一步。感受当你动起来时心情是否轻松了——那就是赤马能量开始共振的信号。</p>
+        <p class="hw-text en">In the next 24 hours, find one long-procrastinated plan and take its very first step. Notice whether you feel lighter — that's Red Horse energy beginning to resonate.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CH2 -->
+
+  <div class="c-section" id="c2">
+    <div class="sec-block">
+      <div class="sec-num">2.1</div>
+      <div class="sec-title tc">投資趨勢：2026的資金會往哪裡跑？</div>
+      <div class="sec-title sc">投资趋势：2026的资金会往哪里跑？</div>
+      <div class="sec-title en">Investment Trends: Where Does Money Flow in 2026?</div>
+      <div class="prose">
+        <p class="tc">火克金，不代表金錢消失，而是固態的金被熔化為液態。舊有的賺錢模式和死存錢的習慣將在赤馬年被淘汰。懂得引導液態金水的人，才能把它塑造成任何想要的形狀。</p>
+        <p class="sc">火克金，不代表金钱消失，而是固态的金被熔化为液态。旧有的赚钱模式和死存钱的习惯将在赤马年被淘汰。懂得引导液态金水的人，才能把它塑造成任何想要的形状。</p>
+        <p class="en">Fire overcoming Metal doesn't mean money disappears — solid gold melts into liquid. Old earning models and cash-hoarding habits will be wiped out. Those who can guide the molten gold can shape it into anything.</p>
+      </div>
+      <ul class="kp-list">
+        <li><strong class="tc">🔥 情緒價值 · 能量修復產業</strong><strong class="sc">🔥 情绪价值 · 能量修复产业</strong><strong class="en">🔥 Emotional Value & Healing</strong><span class="tc"> — 世界越動盪，大家越願意付最高溢價換取片刻寧靜。</span><span class="sc"> — 世界越动荡，大家越愿意付最高溢价换取片刻宁静。</span><span class="en"> — The more chaos, the more people pay premium for a moment of peace.</span></li>
+        <li><strong class="tc">🌐 去中心化個人品牌</strong><strong class="sc">🌐 去中心化个人品牌</strong><strong class="en">🌐 Decentralized Personal Brand</strong><span class="tc"> — 資金從冷冰冰的企業流向有溫度的個人。你的真實性是最強槓桿。</span><span class="sc"> — 资金从冷冰冰的企业流向有温度的个人。你的真实性是最强杠杆。</span><span class="en"> — Money flows from cold corporations to warm individuals. Your authenticity is the strongest lever.</span></li>
+        <li><strong class="tc">⚡ 科技 × 靈性交匯點</strong><strong class="sc">⚡ 科技 × 灵性交汇点</strong><strong class="en">⚡ Tech × Spirituality</strong><span class="tc"> — AI實際應用工具與提升覺知能力的科技產品，具備最高頻率特質。</span><span class="sc"> — AI实际应用工具与提升觉知能力的科技产品，具备最高频率特质。</span><span class="en"> — Practical AI tools and consciousness-expanding tech carry the highest frequency.</span></li>
+      </ul>
+    </div>
+    <div class="sec-block">
+      <div class="sec-num">2.2</div>
+      <div class="sec-title tc">工作 & 事業趨勢</div>
+      <div class="sec-title sc">工作 & 事业趋势</div>
+      <div class="sec-title en">Work & Career Trends</div>
+      <div class="callout callout-gold tc">🌟 2026是個人品牌真正的元年！赤馬是正午太陽，自帶聚光燈。只要你敢站出來，宇宙給你三倍以上的曝光。</div>
+      <div class="callout callout-gold sc">🌟 2026是个人品牌真正的元年！赤马是正午太阳，自带聚光灯。只要你敢站出来，宇宙给你三倍以上的曝光。</div>
+      <div class="callout callout-gold en">🌟 2026 is the real Year Zero for personal brands! Red Horse = Noon Sun, with a built-in spotlight. Stand out authentically — the universe gives you 3x more visibility.</div>
+      <ul class="kp-list">
+        <li><strong class="tc">AI協作賦能</strong><strong class="sc">AI协作赋能</strong><strong class="en">AI Co-creation</strong><span class="tc"> — 不是工程師最紅，而是用AI讓創意效率提升十倍的人。你一個人就是一支軍隊。</span><span class="sc"> — 不是工程师最红，而是用AI让创意效率提升十倍的人。你一个人就是一支军队。</span><span class="en"> — The stars aren't engineers, but those who use AI to 10x their creativity. One person becomes an army.</span></li>
+        <li><strong class="tc">情緒療愈供給者</strong><strong class="sc">情绪疗愈供给者</strong><strong class="en">Healing Service Providers</strong><span class="tc"> — 在火年能提供「水」的人——滋養與平靜——擁有最高定價權。</span><span class="sc"> — 在火年能提供「水」的人——滋养与平静——拥有最高定价权。</span><span class="en"> — Those who provide "Water" in Fire year — nourishment and calm — hold the highest pricing power.</span></li>
+        <li><strong class="tc">即時體驗設計</strong><strong class="sc">即时体验设计</strong><strong class="en">Instant Experience Design</strong><span class="tc"> — 赤馬沒有耐心。讓客戶當下就感到爽的服務，大行其道。</span><span class="sc"> — 赤马没有耐心。让客户当下就感到爽的服务，大行其道。</span><span class="en"> — Red Horse has no patience. Services that make clients feel great right now will dominate.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- CH3 -->
+
+  <div class="c-section" id="c3">
+    <div class="sec-block">
+      <div class="sec-num">3.1 · 3.2 · 3.3</div>
+      <div class="sec-title tc">2026世界能量場 · 靈性陷阱 · 提升地圖</div>
+      <div class="sec-title sc">2026世界能量场 · 灵性陷阱 · 提升地图</div>
+      <div class="sec-title en">2026 Energy Field · Spiritual Traps · Elevation Map</div>
+      <div class="prose">
+        <p class="tc">物質與靈性的界限在2026年變薄了。你的念頭由波轉化為現實粒子的速度被極度壓縮——早上發出強烈創造意圖，下午可能就得到回饋。這是恩賜，也是風險。</p>
+        <p class="sc">物质与灵性的界限在2026年变薄了。你的念头由波转化为现实粒子的速度被极度压缩——早上发出强烈创造意图，下午可能就得到回馈。这是恩赐，也是风险。</p>
+        <p class="en">The boundary between physical and spiritual thins in 2026. Your thoughts compress into physical reality at extraordinary speed — a morning intention may yield afternoon results. This is both a gift and a risk.</p>
+      </div>
+      <ul class="kp-list">
+        <li><strong class="tc">⚠️ 陷阱①：情緒磁場反彈</strong><strong class="sc">⚠️ 陷阱①：情绪磁场反弹</strong><strong class="en">⚠️ Trap 1: Emotional Rebound</strong><span class="tc"> — 你的情緒波以3倍速度彈回。破解：把「箭」轉化為「花」——以祝福代替憤怒。</span><span class="sc"> — 你的情绪波以3倍速度弹回。破解：把「箭」转化为「花」——以祝福代替愤怒。</span><span class="en"> — Your emotional waves bounce back 3x faster. Fix: transform "arrows" into "flowers" — bless instead of rage.</span></li>
+        <li><strong class="tc">⚠️ 陷阱②：集體焦慮感染</strong><strong class="sc">⚠️ 陷阱②：集体焦虑感染</strong><strong class="en">⚠️ Trap 2: Collective Anxiety</strong><span class="tc"> — 媒體販賣恐懼，問自己「這真的是我的嗎？」光照進來，病毒消失。</span><span class="sc"> — 媒体贩卖恐惧，问自己「这真的是我的吗？」光照进来，病毒消失。</span><span class="en"> — Media sells fear. Ask: "Is this truly mine?" When light enters, the virus can't survive.</span></li>
+        <li><strong class="tc">⚠️ 陷阱③：過度顯化失衡</strong><strong class="sc">⚠️ 陷阱③：过度显化失衡</strong><strong class="en">⚠️ Trap 3: Over-Manifestation</strong><span class="tc"> — 不懂控制火候就爆鍋。每天強行留白30分鐘，用「水」冷卻過熱的赤馬能量。</span><span class="sc"> — 不懂控制火候就爆锅。每天强行留白30分钟，用「水」冷却过热的赤马能量。</span><span class="en"> — Without regulation the pot explodes. Force 30 minutes of stillness daily to cool the overheated energy.</span></li>
+      </ul>
+      <div class="callout callout-gold">
+        <strong class="tc">✦ 五大能量提升日常練習：</strong><strong class="sc">✦ 五大能量提升日常练习：</strong><strong class="en">✦ 5 Daily Energy Practices:</strong><br>
+        <span class="tc">① 晨間歸零校準（醒來5分鐘不碰手機）</span><span class="sc">① 晨间归零校准（醒来5分钟不碰手机）</span><span class="en">① Morning Reset (no phone for 5 minutes)</span><br>
+        <span class="tc">② 晚間海鹽能量沐浴</span><span class="sc">② 晚间海盐能量沐浴</span><span class="en">② Evening Sea Salt Energy Cleanse</span><br>
+        <span class="tc">③ 日常微觀感恩（感謝小事）</span><span class="sc">③ 日常微观感恩（感谢小事）</span><span class="en">③ Micro-Gratitude Practice (thank the small things)</span><br>
+        <span class="tc">④ 三秒爆破（靈感→立即動）</span><span class="sc">④ 三秒爆破（灵感→立即动）</span><span class="en">④ 3-Second Burst (impulse → move now)</span><br>
+        <span class="tc">⑤ 全息感官顯化（全身感受成功的爽快感）</span><span class="sc">⑤ 全息感官显化（全身感受成功的爽快感）</span><span class="en">⑤ Full-Sensory Manifestation (inhabit the feeling of success)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CH4 -->
+
+  <div class="c-section" id="c4">
+    <div class="sec-block">
+      <div class="sec-title tc">十二生肖策略分組</div>
+      <div class="sec-title sc">十二生肖策略分组</div>
+      <div class="sec-title en">12 Zodiac Strategy Groups</div>
+      <div class="callout callout-fire" style="margin-bottom:16px;">
+        <span class="tc">🔥 火焰戰隊（虎·馬·狗）策略：「擴張」— 品牌變現、啟動新局<br>🌊 流動戰隊（鼠·猴·龍）策略：「衝浪」— 位移生財、技術煉金<br>⚗️ 煉金戰隊（蛇·雞·牛）策略：「精工」— 轉型升級、人緣財<br>🌿 森林戰隊（豬·兔·羊）策略：「滋養」— 布施破局、隱形獲利</span>
+        <span class="sc">🔥 火焰战队（虎·马·狗）策略：「扩张」— 品牌变现、启动新局<br>🌊 流动战队（鼠·猴·龙）策略：「冲浪」— 位移生财、技术炼金<br>⚗️ 炼金战队（蛇·鸡·牛）策略：「精工」— 转型升级、人缘财<br>🌿 森林战队（猪·兔·羊）策略：「滋养」— 布施破局、隐形获利</span>
+        <span class="en">🔥 Fire Squad (Tiger·Horse·Dog): Expand — brand, launch, harvest<br>🌊 Flow Squad (Rat·Monkey·Dragon): Surf — relocate, refine skills, leverage<br>⚗️ Alchemy Squad (Snake·Rooster·Ox): Precision — transform, charm, defend<br>🌿 Forest Squad (Pig·Rabbit·Goat): Nourish — give, advise, profit quietly</span>
+      </div>
+      <div class="callout callout-gold">
+        <span class="tc">💰 通用財富心法：① 火年不留現金，轉為資產  ② 速度就是金錢，三秒做決定  ③ 顯化需要熱情，以興奮而非沉重的心態面對金錢</span>
+        <span class="sc">💰 通用财富心法：① 火年不留现金，转为资产  ② 速度就是金钱，三秒做决定  ③ 显化需要热情，以兴奋而非沉重的心态面对金钱</span>
+        <span class="en">💰 Universal Wealth Principles: ① No cash hoarding in Fire year — convert to assets  ② Speed is money — decide in 3 seconds  ③ Manifestation needs passion — approach money with excitement, not burden</span>
+      </div>
+      <div style="margin-top:14px;">
+        <p class="tc" style="font-size:13px;color:var(--muted);">→ 查看各生肖詳細運勢請前往「生肖」頁面</p>
+        <p class="sc" style="font-size:13px;color:var(--muted);">→ 查看各生肖详细运势请前往「生肖」页面</p>
+        <p class="en" style="font-size:13px;color:var(--muted);">→ View detailed zodiac fortune on the Zodiac page</p>
+        <button onclick="goPage('zodiac')" style="margin-top:12px;padding:10px 24px;border-radius:20px;background:rgba(212,160,23,0.12);border:1px solid var(--border);color:var(--c1);cursor:pointer;font-size:13px;font-family:inherit;">
+          <span class="tc">前往生肖頁面 →</span><span class="sc">前往生肖页面 →</span><span class="en">Go to Zodiac →</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CH5 -->
+
+  <div class="c-section" id="c5">
+    <div class="sec-block">
+      <div class="sec-num">5.1</div>
+      <div class="sec-title tc">太歲是「提醒」，不是懲罰</div>
+      <div class="sec-title sc">太岁是「提醒」，不是惩罚</div>
+      <div class="sec-title en">Tai Sui Is a Reminder, Not a Punishment</div>
+      <div class="prose">
+        <p class="tc">太歲對應木星——體積是地球1300倍，強大的重力場對地球發射能量波。它本身沒有吉凶，只是放大你的狀態：小問題變大問題，讓你不得不面對。宇宙在說：「這裡有個漏洞，修好它。」</p>
+        <p class="sc">太岁对应木星——体积是地球1300倍，强大的重力场对地球发射能量波。它本身没有吉凶，只是放大你的状态：小问题变大问题，让你不得不面对。宇宙在说：「这里有个漏洞，修好它。」</p>
+        <p class="en">Tai Sui corresponds to Jupiter — 1,300× Earth's volume, broadcasting a powerful energy wave. It carries no inherent fortune or misfortune — it simply amplifies your state. Small cracks become major fractures. The universe says: "There's a bug here. Fix it before it crashes."</p>
+      </div>
+      <ul class="kp-list">
+        <li><strong class="tc">值太歲（馬）</strong><strong class="sc">值太岁（马）</strong><strong class="en">Hosting Tai Sui (Horse)</strong><span class="tc"> — 站上舞台，功過放大10倍，是期中考年。</span><span class="sc"> — 站上舞台，功过放大10倍，是期中考年。</span><span class="en"> — Thrust onto the stage; good and bad amplified 10x. Midterm exam year.</span></li>
+        <li><strong class="tc">沖太歲（鼠）</strong><strong class="sc">冲太岁（鼠）</strong><strong class="en">Clashing Tai Sui (Rat)</strong><span class="tc"> — 強制斷捨離，主動搬家出差轉職，把被動災難轉為主動動能。</span><span class="sc"> — 强制断舍离，主动搬家出差转职，把被动灾难转为主动动能。</span><span class="en"> — Forced decluttering. Move proactively — relocate, travel, change roles.</span></li>
+        <li><strong class="tc">害太歲（牛）</strong><strong class="sc">害太岁（牛）</strong><strong class="en">Harming Tai Sui (Ox)</strong><span class="tc"> — 人際關係消耗大，學會愛自己，停止向外求認可。</span><span class="sc"> — 人际关系消耗大，学会爱自己，停止向外求认可。</span><span class="en"> — Relationships drain you. Learn to love yourself; stop seeking external validation.</span></li>
+        <li><strong class="tc">破太歲（兔）</strong><strong class="sc">破太岁（兔）</strong><strong class="en">Breaking Tai Sui (Rabbit)</strong><span class="tc"> — 不破不立，主動花錢在自我提升，先破才能建新。</span><span class="sc"> — 不破不立，主动花钱在自我提升，先破才能建新。</span><span class="en"> — Break to build. Invest in self-improvement — clear first, then create.</span></li>
+      </ul>
+      <div class="callout callout-dark" style="margin-top:20px;">
+        <span class="tc">太歲契約<br><br>我感謝太歲能量的到來，我接受這一年的挑戰與洗禮。<br>我承諾保持覺知、利他助人。<br>請將衝擊力轉化為我人生升級的推進力。</span>
+        <span class="sc">太岁契约<br><br>我感谢太岁能量的到来，我接受这一年的挑战与洗礼。<br>我承诺保持觉知、利他助人。<br>请将冲击力转化为我人生升级的推进力。</span>
+        <span class="en">Tai Sui Contract<br><br>I welcome the Tai Sui energy and accept its challenges.<br>I commit to awareness and serving others.<br>Please convert your force into propulsion for my life upgrade.</span>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end page-inner -->
+</div>
+
+<!-- ══════ ZODIAC PAGE ══════ -->
+
+<div class="page" id="page-zodiac">
+<div class="page-inner">
+  <div class="ch-header">
+    <div class="ch-badge">ZODIAC 2026</div>
+    <h1 class="ch-title tc">十二生肖全攻略</h1>
+    <h1 class="ch-title sc">十二生肖全攻略</h1>
+    <h1 class="ch-title en">Complete Zodiac Guide 2026</h1>
+    <p class="ch-sub tc">選擇你的生肖，查看專屬運勢與操作建議</p>
+    <p class="ch-sub sc">选择你的生肖，查看专属运势与操作建议</p>
+    <p class="ch-sub en">Select your zodiac to see personalized fortune & action plan</p>
+  </div>
+
+  <div class="zodiac-selector">
+    <div class="z-pick" onclick="showZodiac('rat')"><div class="z-ani">🐭</div><div class="z-name tc">鼠</div><div class="z-name sc">鼠</div><div class="z-name en">Rat</div><div class="z-yr">1948,60,72,84,96,08,20</div></div>
+    <div class="z-pick" onclick="showZodiac('ox')"><div class="z-ani">🐮</div><div class="z-name tc">牛</div><div class="z-name sc">牛</div><div class="z-name en">Ox</div><div class="z-yr">1949,61,73,85,97,09,21</div></div>
+    <div class="z-pick" onclick="showZodiac('tiger')"><div class="z-ani">🐯</div><div class="z-name tc">虎</div><div class="z-name sc">虎</div><div class="z-name en">Tiger</div><div class="z-yr">1950,62,74,86,98,10,22</div></div>
+    <div class="z-pick" onclick="showZodiac('rabbit')"><div class="z-ani">🐰</div><div class="z-name tc">兔</div><div class="z-name sc">兔</div><div class="z-name en">Rabbit</div><div class="z-yr">1951,63,75,87,99,11,23</div></div>
+    <div class="z-pick" onclick="showZodiac('dragon')"><div class="z-ani">🐲</div><div class="z-name tc">龍</div><div class="z-name sc">龙</div><div class="z-name en">Dragon</div><div class="z-yr">1952,64,76,88,00,12,24</div></div>
+    <div class="z-pick" onclick="showZodiac('snake')"><div class="z-ani">🐍</div><div class="z-name tc">蛇</div><div class="z-name sc">蛇</div><div class="z-name en">Snake</div><div class="z-yr">1953,65,77,89,01,13,25</div></div>
+    <div class="z-pick" onclick="showZodiac('horse')"><div class="z-ani">🐴</div><div class="z-name tc">馬</div><div class="z-name sc">马</div><div class="z-name en">Horse</div><div class="z-yr">1954,66,78,90,02,14,26</div></div>
+    <div class="z-pick" onclick="showZodiac('goat')"><div class="z-ani">🐏</div><div class="z-name tc">羊</div><div class="z-name sc">羊</div><div class="z-name en">Goat</div><div class="z-yr">1955,67,79,91,03,15</div></div>
+    <div class="z-pick" onclick="showZodiac('monkey')"><div class="z-ani">🐒</div><div class="z-name tc">猴</div><div class="z-name sc">猴</div><div class="z-name en">Monkey</div><div class="z-yr">1956,68,80,92,04,16</div></div>
+    <div class="z-pick" onclick="showZodiac('rooster')"><div class="z-ani">🐓</div><div class="z-name tc">雞</div><div class="z-name sc">鸡</div><div class="z-name en">Rooster</div><div class="z-yr">1957,69,81,93,05,17</div></div>
+    <div class="z-pick" onclick="showZodiac('dog')"><div class="z-ani">🐶</div><div class="z-name tc">狗</div><div class="z-name sc">狗</div><div class="z-name en">Dog</div><div class="z-yr">1958,70,82,94,06,18</div></div>
+    <div class="z-pick" onclick="showZodiac('pig')"><div class="z-ani">🐷</div><div class="z-name tc">豬</div><div class="z-name sc">猪</div><div class="z-name en">Pig</div><div class="z-yr">1959,71,83,95,07,19</div></div>
+  </div>
+
+  <div id="z-detail"></div>
+</div>
+</div>
+
+<!-- ══════ CARD PAGE ══════ -->
+
+<div class="page" id="page-card">
+<div class="page-inner">
+  <div class="ch-header">
+    <div class="ch-badge">DAILY ORACLE</div>
+    <h1 class="ch-title tc">每日抽卡</h1>
+    <h1 class="ch-title sc">每日抽卡</h1>
+    <h1 class="ch-title en">Daily Oracle Card</h1>
+    <p class="ch-sub" id="card-today-date"></p>
+  </div>
+
+  <div class="card-deck-area">
+    <div class="card-deck"><div class="card-deck-back"><div class="symbol">✦</div><div class="deck-text">2026 ORACLE</div></div></div>
+    <div class="card-deck"><div class="card-deck-back"><div class="symbol">☽</div><div class="deck-text">2026 ORACLE</div></div></div>
+    <div class="card-deck"><div class="card-deck-back"><div class="symbol">⊕</div><div class="deck-text">2026 ORACLE</div></div></div>
+  </div>
+
+  <button class="draw-btn" id="draw-btn" onclick="drawCard()">
+    <span class="tc">✦ 抽取今日宇宙訊息 ✦</span>
+    <span class="sc">✦ 抽取今日宇宙讯息 ✦</span>
+    <span class="en">✦ Draw Today's Cosmic Message ✦</span>
+  </button>
+
+  <div id="card-result"></div>
+</div>
+</div>
+
+<!-- ══════ FULL TEXT PAGE ══════ -->
+
+<div class="page" id="page-full">
+<div class="page-inner" style="max-width:820px;">
+  <div class="ch-header">
+    <div class="ch-badge">COMPLETE TEXT · 完整講義</div>
+    <h1 class="ch-title tc">2026全方位人生跳級課 · 完整版</h1>
+    <h1 class="ch-title sc">2026全方位人生跳级课 · 完整版</h1>
+    <h1 class="ch-title en">2026 Life Upgrade Course — Full Text</h1>
+    <p class="ch-sub">趨勢 × 能量 × 運勢 ｜ 主講：莫子</p>
+  </div>
+
+  <div class="full-toc">
+    <div class="full-toc-title tc">目錄 · 快速跳轉</div>
+    <div class="full-toc-title sc">目录 · 快速跳转</div>
+    <div class="full-toc-title en">TABLE OF CONTENTS</div>
+    <div class="full-toc-links">
+      <a class="full-toc-link" onclick="document.getElementById('fc1').scrollIntoView({behavior:'smooth'})"><span class="tc">第一章 赤馬大運</span><span class="sc">第一章 赤马大运</span><span class="en">Ch.1 Red Horse</span></a>
+      <a class="full-toc-link" onclick="document.getElementById('fc2').scrollIntoView({behavior:'smooth'})"><span class="tc">第二章 投資趨勢</span><span class="sc">第二章 投资趋势</span><span class="en">Ch.2 Investments</span></a>
+      <a class="full-toc-link" onclick="document.getElementById('fc2b').scrollIntoView({behavior:'smooth'})"><span class="tc">2.2 工作事業</span><span class="sc">2.2 工作事业</span><span class="en">2.2 Career</span></a>
+      <a class="full-toc-link" onclick="document.getElementById('fc3').scrollIntoView({behavior:'smooth'})"><span class="tc">第三章 能量場</span><span class="sc">第三章 能量场</span><span class="en">Ch.3 Energy Field</span></a>
+      <a class="full-toc-link" onclick="document.getElementById('fc3b').scrollIntoView({behavior:'smooth'})"><span class="tc">3.2 靈性陷阱</span><span class="sc">3.2 灵性陷阱</span><span class="en">3.2 Traps</span></a>
+      <a class="full-toc-link" onclick="document.getElementById('fc3c').scrollIntoView({behavior:'smooth'})"><span class="tc">3.3 能量地圖</span><span class="sc">3.3 能量地图</span><span class="en">3.3 Energy Map</span></a>
+      <a class="full-toc-link" onclick="document.getElementById('fc4').scrollIntoView({behavior:'smooth'})"><span class="tc">第四章 生肖總覽</span><span class="sc">第四章 生肖总览</span><span class="en">Ch.4 Zodiac</span></a>
+      <a class="full-toc-link" onclick="document.getElementById('fc4b').scrollIntoView({behavior:'smooth'})"><span class="tc">4.2 金錢豐盛</span><span class="sc">4.2 金钱丰盛</span><span class="en">4.2 Wealth</span></a>
+      <a class="full-toc-link" onclick="document.getElementById('fc4c').scrollIntoView({behavior:'smooth'})"><span class="tc">4.3 桃花幸福</span><span class="sc">4.3 桃花幸福</span><span class="en">4.3 Love</span></a>
+      <a class="full-toc-link" onclick="document.getElementById('fc4d').scrollIntoView({behavior:'smooth'})"><span class="tc">4.4 健康平安</span><span class="sc">4.4 健康平安</span><span class="en">4.4 Health</span></a>
+      <a class="full-toc-link" onclick="document.getElementById('fc4e').scrollIntoView({behavior:'smooth'})"><span class="tc">4.5 工作事業</span><span class="sc">4.5 工作事业</span><span class="en">4.5 Work</span></a>
+      <a class="full-toc-link" onclick="document.getElementById('fc5').scrollIntoView({behavior:'smooth'})"><span class="tc">第五章 太歲解析</span><span class="sc">第五章 太岁解析</span><span class="en">Ch.5 Tai Sui</span></a>
+      <a class="full-toc-link" onclick="document.getElementById('fc5b').scrollIntoView({behavior:'smooth'})"><span class="tc">5.2 終極攻略</span><span class="sc">5.2 终极攻略</span><span class="en">5.2 Ultimate Guide</span></a>
+    </div>
+  </div>
+
+  <!-- CH 1 -->
+
+  <div class="full-chapter" id="fc1">
+    <div class="full-chapter-header">
+      <div class="full-chapter-num">CHAPTER ONE · 第一章</div>
+      <div class="full-chapter-title tc">2026年為什麼是改變黃金年？</div>
+      <div class="full-chapter-title sc">2026年为什么是改变黄金年？</div>
+      <div class="full-chapter-title en">Why Is 2026 the Golden Year for Change?</div>
+    </div>
+    <div class="full-section" id="fc1a">
+      <div class="full-section-title tc">1.1 識破時空的幻象：赤馬紅羊大運能量解碼</div>
+      <div class="full-section-title sc">1.1 识破时空的幻象：赤马红羊大运能量解码</div>
+      <div class="full-section-title en">1.1 Seeing Through the Illusion: Decoding the Red Horse Era</div>
+      <div class="full-body">
+        <p class="tc">今天聚在這裡，不是為了聽虛無縹緲的預言，而是要深刻地去理解當前宇宙能量的流動，正在怎樣地影響你的命運。2026–2027赤馬紅羊大運，我們第一個要談的是：識破這個時空的幻象，能量場為什麼劇烈加速？</p>
+        <p class="tc">首先，大家先放下大腦對時間的線性認知。時間只是一種振動頻率，當我們進入2026年，整個地球的能量，正在經歷一場很劇烈的甚至是暴力式的加速。所謂的赤馬能量，其中的「赤」代表著五行裡面的火；而「馬」代表著急速的行動跟奔馳；「火」的特性是向上擴散的，而「馬」的特性是前進跟跨越的。當這兩個結合的時候，代表著物質世界的分子振動頻率正在大幅地提升。你有沒有感覺到，這幾年不管是資訊傳遞或科技演進，還是你個人情緒的起伏，都變得比以前快上很多？這個就是能量場加速的一種表現。在2026年，如果你處於高頻的狀態，顯化的速度會提升好幾倍以上。</p>
+        <p class="tc">為什麼這兩年是所有人都能跳階的時機？在穩定的年代裡，階級是固化的，普通人要跨越需要像爬梯子一樣一階一階往上爬。但在2026年，能量的振盪會讓原本固定的社會框架出現很多空隙——就像沸騰的水裡，底部的氣泡迅速上升到表面，這就是所謂的「跳級」。這兩年不再是比誰累積更多，而是比誰的頻率能「對」到正確的位置。當你不再認同舊有的匱乏觀念，你就能在能量流動裡找到那股向上的氣流，直接完成人生維度的跨越。</p>
+        <p class="tc">能量運行的真諦：「動得快，反而容易翻身」。在2026年赤馬年，認為「不動」就是最好的，這是很大的誤區。想象你站在一個快速旋轉的轉盤上面，如果靜止不動，你很容易被離心力甩出去；但如果你順著旋轉的方向加速前進，你反而能夠保持平衡，甚至可以利用旋轉的力量把自己推向更高的地方。這裡的「動」包含三個層面：意識的轉動（快速捨棄舊信念）；行動的切換（靈感出現立即行動）；以及頻率的校準（持續保持高頻狀態）。</p>
+        <p class="tc">2026年是心想事成變快的年份，但這個背後有一個陷阱：不好的念頭顯化也會變快。如果你內心帶著憤怒、焦慮或對世界崩壞的恐懼，這種低頻的念頭也會以前所未有的速度顯化在你的現實生活裡面。提升顯化速度的前提，是你的純淨度要夠。</p>
+        <p class="sc">2026–2027赤马红羊大运核心：时间只是振动频率，2026年地球能量正在暴力加速。「赤」=五行之火，「马」=急速行动，两者结合意味着物质世界分子振动频率大幅提升，高频状态下显化速度提升好几倍。</p>
+        <p class="sc">跳级时机：能量振荡让固定社会框架出现空隙——像沸腾的水里气泡迅速上升。这两年不比谁累积更多，而是比谁频率能「对」到正确位置。动得快的人反而容易翻身——顺着旋转方向加速前进才能保持平衡。</p>
+        <p class="sc">警示：2026年好念头显化快，坏念头显化同样快。提升显化速度的前提是内心纯净度够高。</p>
+        <p class="en">We gather not for vague prophecies, but to understand how cosmic energy is shaping your destiny. The 2026–2027 Red Horse–Red Goat era: time is only a vibration frequency, and Earth's energy is undergoing violent acceleration. "Red" = Fire in Five Elements; "Horse" = swift action. Together they dramatically elevate the molecular vibration of our physical world. If you operate at a high frequency in 2026, your manifestation speed multiplies several times over.</p>
+        <p class="en">Why is this a window for everyone to level up? In stable eras, social structures are rigid. But in 2026, energy oscillation creates gaps in fixed frameworks — like bubbles rising rapidly in boiling water. These two years aren't about who accumulates more, but whose frequency is "tuned" to the right position. Moving fast is an advantage — like accelerating in the direction of a spinning disk rather than standing still and being thrown off by centrifugal force.</p>
+        <p class="en">Warning: In 2026, good thoughts manifest faster AND bad thoughts manifest faster. Anxiety, anger, fear — these low-frequency thoughts will manifest at unprecedented speed. Inner purity is the prerequisite for accelerated manifestation.</p>
+      </div>
+      <div class="full-body" style="margin-top:20px;">
+        <p class="tc" style="color:var(--c1);font-weight:700;letter-spacing:.05em;">⚡ 四大能量操盤核心技術</p>
+        <p class="tc"><strong style="color:var(--c3);">① 意識的檢定：</strong>每天進行信念的檢定。當內心生起「大家都過得很慘，我也會變慘！」的信念時，立即對自己說：「那只是集體意識的投影，不是我的實相。」赤馬能量是中性的，如果你不主動去檢定你的信念，它就會自動抓取頻率最多的平均值去顯化。</p>
+        <p class="tc"><strong style="color:var(--c3);">② 高頻顯化的呼吸錨定法：</strong>每天早上醒來，還沒接觸手機之前，先深呼吸三次。每次呼吸都想象你正在吸入紅色的赤馬能量；在吐氣時，將你2026年最想達成的畫面推入能量場裡面。關鍵不在於畫面要很精細，而是在於那個畫面帶給你的感覺。</p>
+        <p class="tc"><strong style="color:var(--c3);">③ 以行動消解能量阻塞（三秒法則）：</strong>當一個正向的靈感出來時，三秒內你要做出一個物理性的動作——不管是寫下筆記、打一通電話或上網搜尋資料。能量上的邏輯：你只要能動起來，宇宙的赤馬就會載著你奔跑。一旦停下來超過三天，這個能量就會冷卻，轉變為沉重的壓力。</p>
+        <p class="tc"><strong style="color:var(--c3);">④ 不好信念的快速消融練習：</strong>當感覺到恐懼、或者憤怒的時候，不要壓抑它，也不要分析它。直接觀察你身體哪一個部分感覺到緊繃？輕輕地對那個能量說：「我看見你了，謝謝你提醒我，但我現在選擇回歸平靜。」在2026年，轉化的速度取決於你的「不認同」——你越快意識到「我不是我的情緒」，那個壞念頭就會像冰塊遇到火一樣瞬間消融。</p>
+        <p class="sc"><strong style="color:var(--c3);">① 意识检定：</strong>当生起「大家都很慘我也会变惨」时，立即说「那只是集体意识的投影，不是我的实相」。② <strong style="color:var(--c3);">呼吸锚定法：</strong>每天早上深呼吸三次，吸入赤马能量，吐气时把最想达成的画面推入能量场。③ <strong style="color:var(--c3);">三秒法则：</strong>灵感出现三秒内做物理动作，超过三天能量冷却变压力。④ <strong style="color:var(--c3);">快速消融：</strong>感到恐惧时看着紧绷的部位说「我看见你了，我选择回归平静」。</p>
+        <p class="en"><strong style="color:var(--c3);">① Belief Auditing:</strong> When "everyone is suffering, I will too" arises, immediately say "That's only collective projection, not my reality." ② <strong style="color:var(--c3);">Breath Anchor:</strong> 3 deep breaths before touching your phone; inhale Red Horse fire; exhale your vision into the field. ③ <strong style="color:var(--c3);">3-Second Rule:</strong> Within 3 seconds of a positive impulse, make one physical move. Energy stagnant 3+ days turns to dead weight. ④ <strong style="color:var(--c3);">Rapid Dissolution:</strong> When fear arises, observe the tension in your body and say "I see you. I choose peace now."</p>
+      </div>
+      <div class="full-hw">
+        <span class="full-hw-label">下課作業 · HOMEWORK</span>
+        <p class="full-hw-text tc">在接下來的24小時裡，找出一個你拖延很久的計劃，不管它多小，在今天結束前完成它的第一步。觀察當你動起來時，心情是不是突然輕鬆了——那就是赤馬能量開始與你共振的信號。</p>
+        <p class="full-hw-text sc">在接下来的24小时里，找出一个拖延很久的计划，在今天结束前完成它的第一步。观察动起来时心情是否突然轻松了。</p>
+        <p class="full-hw-text en">In the next 24 hours, find one long-procrastinated plan and take its very first step before today ends. Notice whether you feel lighter when you move — that's the Red Horse energy beginning to resonate with you.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="full-divider"><span>✦</span></div>
+
+  <!-- CH 2 -->
+
+  <div class="full-chapter" id="fc2">
+    <div class="full-chapter-header">
+      <div class="full-chapter-num">CHAPTER TWO · 第二章</div>
+      <div class="full-chapter-title tc">2026時間趨勢總覽</div>
+      <div class="full-chapter-title sc">2026时间趋势总览</div>
+      <div class="full-chapter-title en">2026 Macro Trends Overview</div>
+    </div>
+
+```
+<div class="full-section" id="fc2a">
+  <div class="full-section-title tc">2.1 投資趨勢：資金會往哪裡跑？</div>
+  <div class="full-section-title sc">2.1 投资趋势：资金会往哪里跑？</div>
+  <div class="full-section-title en">2.1 Investment Trends: Where Does Money Flow?</div>
+  <div class="full-body">
+    <p class="tc">在2026年，金錢的運作邏輯，會從「物質累積」轉向「頻率的共振」，如果你還在用舊時代的腦袋看財富，你會在這波巨浪裡感到迷失。「火」克「金」不代表金錢消失，而是代表金錢被融化了——固態的「金子」被赤馬的「火」融化成液態的「金水」，也就是「舊有的賺錢模式」和「死存錢的習慣」會死掉。如果你死守著固態你會「破財」；如果你懂得引導液態的「金水」，你就能把它塑造成任何想要的形狀。</p>
+    <p class="tc"><strong style="color:var(--c3);">普通人可以參與的三大機會點：</strong><br>
+    <strong>①情緒價值與能量修復產業</strong> — 當世界動盪速度很快，大家願意付最高的溢價換取片刻的寧靜或能量的平衡。如果你懂得協助他人平衡情緒，或提供具療愈感的內容或產品，你就是2026年資金最想尋找的標的。<br>
+    <strong>②去中心化的個人品牌資產</strong> — 赤馬年是個人品牌網路副業的好起跑點，資金會從冷冰冰的企業流向有溫度、有靈魂的個人。如果你具備一項能解決他人問題的技能，透過網路的槓桿，個人價值可以快速翻倍。<br>
+    <strong>③科技與靈性的交匯點</strong> — 凡是可以幫人類省下時間、讓人專注於創作的工具，包括AI的實際應用以及提升人類覺知能力的科技產品，都是資金寵愛的對象。</p>
+    <p class="tc"><strong style="color:#FF8080;">絕對不能碰的三大投資陷阱：</strong><br>
+    <strong>①恐懼錯過引發的虛假泡沫</strong> — 如果你的投資決定是基於恐懼焦慮而非清晰洞察，焦慮就會加速顯化為虧損。<br>
+    <strong>②過度槓桿與借來的能量</strong> — 2026年因果反饋很快，過度借貸投機在能量稍微波動時，反噬力量會讓你瞬間崩潰。<br>
+    <strong>③守著枯萎的舊能量</strong> — 已失去活力的舊產業在赤馬年會面臨殘酷的能源枯竭。</p>
+    <p class="tc">核心金句：「在2026年，不要追著錢跑，要讓錢追著你的頻率跑。」當你是一個充滿創造力、行動力、內在平靜的人，你就是超導體，赤馬能量會載著豐盛主動找上門來。</p>
+    <p class="sc">火克金不代表金钱消失，而是旧赚钱模式和死存钱习惯会被淘汰。三大机会：①情绪价值与能量修复；②个人品牌网路副业；③科技×灵性交汇点。三大陷阱：①FOMO泡沫；②过度杠杆；③守着旧能量。核心：不追钱，让钱追你的频率。</p>
+    <p class="en">Money logic shifts from "accumulation" to "frequency resonance." Fire melting Metal = old earning models and hoarding habits dissolve. 3 Opportunities: ① Emotional healing industry; ② Personal brand assets; ③ Tech × spirituality convergence. 3 Traps: ① FOMO bubbles; ② Excessive leverage; ③ Clinging to dying industries. Core principle: Don't chase money — let money chase your frequency.</p>
+  </div>
+  <div class="full-hw">
+    <span class="full-hw-label">下課作業 · HOMEWORK</span>
+    <p class="full-hw-text tc">閉上眼睛，逐一感受你目前的資產配置：哪些讓你感到沉重像死水？哪些讓你感到興奮像流動的泉水？在未來一個月內，減少沉重的部分，增加流動的部分。</p>
+    <p class="full-hw-text sc">闭眼感受资产配置：哪些沉重如死水？哪些兴奋如流水？一个月内减少前者，增加后者。</p>
+    <p class="full-hw-text en">Close your eyes and sense each asset: which feel heavy like stagnant water? Which feel exciting like flowing spring water? Over the next month, reduce the heavy, increase the flowing.</p>
+  </div>
+</div>
+
+<div class="full-section" id="fc2b">
+  <div class="full-section-title tc">2.2 工作 & 事業趨勢：能量卡位</div>
+  <div class="full-section-title sc">2.2 工作 & 事业趋势：能量卡位</div>
+  <div class="full-section-title en">2.2 Work & Career: Energy Positioning</div>
+  <div class="full-body">
+    <p class="tc">工作，不是為了換取薪水，工作是將你內在的能量顯化到物質世界最主要的管道。2026年職場會出現極端現象：跟不上頻率的行業像乾柴快速燒毀；踩對頻率的個人會像被火箭推進，實現生涯的垂直起飛。我們今天不談傳統職涯規劃，我們要談的是「能量卡位」。</p>
+    <p class="tc"><strong style="color:var(--c3);">2026年會爆紅的三大技能與行業：</strong><br>
+    <strong>①AI協作與賦能技能</strong> — 爆紅的不是工程師，而是能用AI將創意、寫作、設計、決策效率提升十倍的人。你一個人就是一支軍隊，赤馬年獎勵「速度」。<br>
+    <strong>②情緒價值與靈性療愈供給者</strong> — 在混亂的「火」年，誰能提供「水」——滋養與平靜——誰就擁有最高的定價權。<br>
+    <strong>③體驗設計與瞬間顯化</strong> — 赤馬能量沒有耐心。誰能讓客戶當下就感到爽、感覺到改變，這種服務就會大行其道。</p>
+    <p class="tc"><strong style="color:var(--c3);">個人品牌元年：</strong>2026年是真正的元年，不是晚了！赤馬是「午火」，代表正午的太陽，自帶聚光燈效果。只要你敢站出來、真實地表達自己，宇宙給你比以前多三倍以上的曝光度。副業心法：「不要完美，要快」；「真實就是流量」，你的脆弱、你的學習過程，甚至失敗，這種真實的頻率反而能吸引鐵粉。</p>
+    <p class="tc"><strong style="color:#FF8080;">在2026年會變得很艱難的行業：</strong>機械式缺乏靈魂的腦力勞動（AI取代）；過度依賴實體的重資產行業（火克金）；缺乏真實性的中介包裝業（消費者直覺變敏銳）。</p>
+    <p class="sc">三大爆红技能：①AI协作赋能（效率提升10倍，一人即军队）；②情绪价值疗愈（提供「水」的人拥有最高定价权）；③即时体验设计（让客户当下感到改变）。个人品牌元年：真实就是流量，宇宙给你3倍曝光。</p>
+    <p class="en">3 Booming skills: ① AI co-creation (10x efficiency; one person = an army); ② Emotional healing (providing "Water" in a Fire year = highest pricing power); ③ Instant experience design (clients feel changed right now). Personal brand Year Zero: authenticity is traffic; the universe gives you 3x visibility.</p>
+  </div>
+  <div class="full-hw">
+    <span class="full-hw-label">下課作業 · HOMEWORK</span>
+    <p class="full-hw-text tc">找出你一直想做但不敢做的副業點子或專案想法。今天晚上只做一件事：把它寫下來，告訴宇宙：「我準備好開始了！」</p>
+    <p class="full-hw-text sc">找出你一直想做但不敢做的副业点子。今晚只做一件事：写下来，告诉宇宙「我准备好了！」</p>
+    <p class="full-hw-text en">Find that side hustle you've always wanted but never dared start. Tonight, do one thing: write it down and tell the universe "I am ready to begin!"</p>
+  </div>
+</div>
+```
+
+  </div>
+
+  <div class="full-divider"><span>✦</span></div>
+
+  <!-- CH 3 -->
+
+  <div class="full-chapter" id="fc3">
+    <div class="full-chapter-header">
+      <div class="full-chapter-num">CHAPTER THREE · 第三章</div>
+      <div class="full-chapter-title tc">2026世界能量場：靈性提升與陷阱</div>
+      <div class="full-chapter-title sc">2026世界能量场：灵性提升与陷阱</div>
+      <div class="full-chapter-title en">2026 World Energy Field: Spiritual Elevation & Traps</div>
+    </div>
+
+```
+<div class="full-section" id="fc3a">
+  <div class="full-section-title tc">3.1 能量變化的本質：心想事成為何加速？</div>
+  <div class="full-section-title sc">3.1 能量变化的本质：心想事成为何加速？</div>
+  <div class="full-section-title en">3.1 The Nature of Energy Change: Why Does Manifestation Accelerate?</div>
+  <div class="full-body">
+    <p class="tc">如果聽不懂這一章，你就像在大海裡隨波逐流的人，浪來了只能被淹沒；如果聽懂了，你就會知道這個浪是來送你上岸的。</p>
+    <p class="tc"><strong style="color:var(--c3);">赤馬能量公式：</strong>赤馬能量 = 創造力 + 行動力 + 顯化速度加倍。物質與靈性的界限在2026年變薄了，靈性世界的訊號變強了。梯子之間的距離，被這股上升的氣流縮短了，所以才有「跳級」。</p>
+    <p class="tc"><strong style="color:var(--c3);">心想事成變快——緩衝期的消失：</strong>在過去，你許下願望，宇宙會給你一個緩衝期讓你有時間修正念頭；但在2026赤馬年，這個緩衝期幾乎消失了。你的念頭由「波」轉化為現實「粒子」的過程被極度壓縮——你早上發出強烈的創造意圖，下午可能就得到回饋了。</p>
+    <p class="tc"><strong style="color:#FF8080;">惡念顯化也變快：</strong>2026年的能量是公正無私的放大鏡，它不只加速好事，也加速壞事。赤馬能量像狂奔的野馬，聽不懂人類語言的好壞，只認能量的強度。當你極度擔心「我會不會失業？我會不會生病？」，你是在向宇宙發射高強度的負面訊號，宇宙會以三倍的速度把這個顯化在你的生活裡面。</p>
+    <p class="tc"><strong style="color:var(--c3);">如何在2026的能量場中衝浪：</strong><br>
+    ①覺察急煞車、念頭過濾：當負面念頭出現，想象手中有一把剪刀，把那條黑色的能量線給剪斷，然後立刻深呼吸，轉移注意力。<br>
+    ②以行動引導能量：赤馬是動能，當你焦慮時，通常是因為能量塞在腦袋裡空轉。去做一件具體的事——打掃房間、跑步、寫字——讓能量通過身體流出去。心法：「行動就是恐懼的解藥」。<br>
+    ③善用集體意識順風車：減少看負面新聞，多接觸已活在高頻狀態的人或社群。能量是會共振的，在2026年慎選你的圈子就是慎選你的命運。</p>
+    <p class="sc">赤马公式=创造力+行动力+显化速度×2。心想事成变快因为缓冲期消失。惡念也变快——能量只认强度不分好坏。衝浪三招：①剪断负面能量线；②行动是恐惧解药；③慎选圈子就是慎选命运。</p>
+    <p class="en">Red Horse formula = Creativity + Action + Manifestation × 2. Manifestation accelerates because the "buffer period" has nearly disappeared. Negative thoughts also manifest faster — Red Horse energy recognizes intensity, not moral content. How to surf: ① Cut negative energy threads; ② Action is the antidote to fear; ③ Choosing your circle is choosing your destiny.</p>
+  </div>
+</div>
+
+<div class="full-section" id="fc3b">
+  <div class="full-section-title tc">3.2 2026靈性三大陷阱</div>
+  <div class="full-section-title sc">3.2 2026灵性三大陷阱</div>
+  <div class="full-section-title en">3.2 Three Major Spiritual Traps of 2026</div>
+  <div class="full-body">
+    <p class="tc">在2026年因為能量太強太快，有三個巨大的陷阱，是絕大部分的人——尤其是修行多年的人——很容易掉進去的。今天這堂課就是你的「能量安全氣囊」。</p>
+    <p class="tc"><strong style="color:#FF8080;">陷阱一：情緒磁場的反彈</strong><br>
+    2026年就像一個擦得非常亮的「凹面鏡」，是聚光的。你發出的情緒波，撞到高頻的能量牆，就用三倍的速度與強度直接彈回來——這就是為什麼「現世報」來得特別快。<br>
+    <strong>破解秘訣：</strong>當意識到自己要發火的時候，告訴自己「這是一顆回力鏢，丟出去會砸死我自己」。然後深呼吸三秒——在這三秒裡把「箭」（憤怒）在心裡轉化為「花」（祝福或平靜）。</p>
+    <p class="tc"><strong style="color:#FF8080;">陷阱二：集體意識焦慮感染</strong><br>
+    很多人問我：「為什麼我明明沒發生什麼事，為什麼胸口悶悶的？」——這就是被感染了。媒體為了流量販賣恐懼，你多看一眼就是多吸一口毒氣。<br>
+    <strong>破解：</strong>當負面情緒突然來襲，先問自己「這真的是我的嗎？」；進行物理防禦：每天洗澡時，把蓮蓬頭的水想象是「金色的光」，把黏在身上的集體意識灰塵沖進下水道；有意識地選擇高頻的訊息攝入。</p>
+    <p class="tc"><strong style="color:#FF8080;">陷阱三：過度顯化，能量失衡</strong><br>
+    既然2026年心想事成變快，人類的小我就會變得很貪婪。「火」燒得越旺，如果不懂得控制火候，最後就是「爆鍋」——身體垮掉、人際關係爆裂。很多人在2026年看起來好像事業一飛衝天，但身體垮掉了。<br>
+    <strong>破解——水火既濟：</strong>①留白：每天強制性留出30分鐘什麼都不做，這段留白就是「水」，能冷卻過熱的赤馬能量；②知足的定錨：去設定一個「夠了」的標準，感恩也是最好的冷卻劑；③接地：多接觸大自然、多赤腳踩地，「土」能瀉「火」。</p>
+    <p class="sc">三大陷阱：①情绪磁场反弹（3倍速弹回，破解：深呼吸三秒，把「箭」变「花」）；②集体焦虑感染（先问「这是我的吗？」，洗澡时观想金色光冲走灰尘）；③过度显化失衡（每天强制留白30分钟，以水冷却赤马能量）。</p>
+    <p class="en">Trap 1: Emotional Rebound — emotions bounce back 3x faster. Fix: 3-second breath, transform "arrows" (anger) into "flowers" (blessings). Trap 2: Collective Anxiety Infection — ask "Is this truly mine?", visualize golden shower washing collective dust away. Trap 3: Over-Manifestation Imbalance — force 30 minutes of empty space daily as "Water" to cool the overheated energy.</p>
+  </div>
+  <div class="full-hw">
+    <span class="full-hw-label">下課作業 · HOMEWORK</span>
+    <p class="full-hw-text tc">今晚睡前，回想今天：①有沒有情緒反應特別大的時刻？②有沒有莫名恐慌的時刻？③今天有沒有留給自己發呆的時間？誠實回答——看見就是轉化的開始。</p>
+    <p class="full-hw-text sc">睡前回想今天：①情绪反应特别大？②莫名恐慌？③有没有发呆时间？诚实回答，看见就是转化的开始。</p>
+    <p class="full-hw-text en">Before bed, reflect on your day: ① Unusually strong emotion? ② Inexplicable anxiety? ③ Any time for pure stillness? Honest answers — seeing clearly is where transformation begins.</p>
+  </div>
+</div>
+
+<div class="full-section" id="fc3c">
+  <div class="full-section-title tc">3.3 個人能量提升地圖：五大落地練習</div>
+  <div class="full-section-title sc">3.3 个人能量提升地图：五大落地练习</div>
+  <div class="full-section-title en">3.3 Personal Energy Elevation Map: 5 Grounded Practices</div>
+  <div class="full-body">
+    <p class="tc">這張地圖不是要你學更多複雜的法門，而是要教你怎麼調頻。在2026年你是一個能量接收器，頻率對準了，宇宙的豐盛自然就來；頻率亂了，你接收到的是雜亂訊息與災難。</p>
+    <p class="tc"><strong style="color:var(--c3);">第一招（每天）：晨間歸零校準</strong><br>
+    醒來之後的五分鐘不要碰手機、不要下床；身體掃描，從腳到頭頂感受身體的存在；意圖設定，默念：「我是無限的覺知，今天我選擇以平靜與喜悅的頻率來體驗這個世界」；觀想白光光柱從宇宙穿過你的頭頂直達地心——這就是你的定海神針。</p>
+    <p class="tc"><strong style="color:var(--c3);">第二招（每天）：晚間能量沐浴與斷捨離</strong><br>
+    赤馬能量具有「高黏著性」，你在外奔波一天，身上會沾大量別人的情緒，不清洗就睡覺，低頻能量會滲入潛意識。操作：用海鹽搓一下手腳；閉上眼睛，想象手中有把金色的剪刀，把連接在不舒服部位的能量線全部剪斷；在心裡說：「屬於別人的能量，我送還給他們；屬於我的能量，我收回來。」</p>
+    <p class="tc"><strong style="color:var(--c3);">第三招（每天）：日常微觀感恩</strong><br>
+    感恩是宇宙頻率中最高的振動之一。不只感恩大事，要感謝微小的事——喝到一口乾淨的水、電梯剛好來了、陽光灑在臉上。關鍵是感受到心輪有一股暖流，那股暖流就是你的防護罩。</p>
+    <p class="tc"><strong style="color:var(--c3);">第四招（關鍵時刻）：直覺的三秒爆破</strong><br>
+    當靈感閃過「我可以試試這個」，三秒內做出一個物理動作——不是要你立刻辭職，而是做一個微行動（馬上寫下來、立刻搜尋）。這個動作是在向宇宙說：「我收到了，我準備好了」，會啟動赤馬的連鎖反應。</p>
+    <p class="tc"><strong style="color:var(--c3);">第五招（關鍵時刻）：全息顯化共振</strong><br>
+    赤馬能量回應的是你的感覺，不是你的思維。不要只是在腦中看電影，要進入那個場景——觸覺（握著方向盤的觸感）、嗅覺（新車皮革的味道）、聽覺（引擎聲的頻率）。情緒最重要——當那個爽的感覺達到頂點時，深呼吸，把它鎖在你的細胞裡面。這叫做「預演實相」，赤馬的能量分不清真假，它會拼命調動資源來填補現實與幻象的落差。</p>
+    <p class="tc"><strong style="color:var(--c1);">高階心法——顯化速度 = 意圖清晰度 × 情感強度 ÷ 內在阻力：</strong>最大的阻力是「等待結果」——每天都在看「來了沒？」就是在釋放匱乏訊號。心法：放下期待，保持興奮，像網路購物一樣下單了就知道貨會到，開心地過你的生活。第二個阻力是「我不配」——先去給予，才能消融接收的阻力。</p>
+    <p class="sc">五大练习：①晨间归零（5分钟不碰手机、身体扫描、意图设定、观想白光）；②晚间能量沐浴（海盐、金色剪刀剪能量线、归还他人能量）；③微观感恩（感谢小事，让心轮产生暖流）；④三秒爆破（灵感三秒内物理动作）；⑤全息显化（调动所有感官进入成功场景）。显化公式：速度=意图清晰×情感强度÷内在阻力。</p>
+    <p class="en">5 Practices: ① Morning Reset (5 min no phone, body scan, intention, white light pillar); ② Evening Energy Cleanse (sea salt, golden scissors, return others' energy); ③ Micro-Gratitude (feel warm current in heart center); ④ 3-Second Burst (physical move within 3 seconds of inspiration); ⑤ Full-Sensory Manifestation (inhabit the scene with all senses, lock the peak feeling into cells). Formula: Manifestation Speed = Intention Clarity × Emotional Intensity ÷ Inner Resistance.</p>
+  </div>
+  <div class="full-hw">
+    <span class="full-hw-label">下課作業 · HOMEWORK</span>
+    <p class="full-hw-text tc">拿出你的行事曆，設定：①每天早上比平常早五分鐘的鬧鐘，標籤「歸零校準」；②每天晚上睡前的鬧鐘，標籤「剪斷連接」；③在你看得到的地方貼一個便利貼，寫上「三秒鐘動起來」。聽課一萬遍，不如行動一次。</p>
+    <p class="full-hw-text sc">设定三个提醒：①早5分钟闹钟「归零校准」；②睡前闹钟「剪断连接」；③显眼处贴便利贴「三秒钟动起来」。</p>
+    <p class="full-hw-text en">Set 3 reminders: ① Morning alarm 5 minutes earlier, labeled "Zero Reset"; ② Bedtime alarm, labeled "Cut the Cords"; ③ Sticky note where you'll see it: "Move within 3 seconds."</p>
+  </div>
+</div>
+```
+
+  </div>
+
+  <div class="full-divider"><span>✦</span></div>
+
+  <!-- CH 4 -->
+
+  <div class="full-chapter" id="fc4">
+    <div class="full-chapter-header">
+      <div class="full-chapter-num">CHAPTER FOUR · 第四章</div>
+      <div class="full-chapter-title tc">十二生肖2026全攻略</div>
+      <div class="full-chapter-title sc">十二生肖2026全攻略</div>
+      <div class="full-chapter-title en">Complete 2026 Guide for All 12 Zodiac Signs</div>
+    </div>
+
+```
+<div class="full-section" id="fc4a">
+  <div class="full-section-title tc">4.1 生肖運勢總覽：看懂你的能量代碼</div>
+  <div class="full-section-title sc">4.1 生肖运势总览：看懂你的能量代码</div>
+  <div class="full-section-title en">4.1 Zodiac Fortune Overview: Decode Your Energy</div>
+  <div class="full-body">
+    <p class="tc">生肖不是迷信，它是你出生時攜帶的一組「能量接收器」。2026年是丙午年，天干是「火」，地支也有「火」，這股強烈的「火」能量射向地球時，每個人的接收器有不同的反應。</p>
+    <p class="tc"><strong style="color:var(--c1);">★ 能量天選之子——容易跳級的生肖：</strong><br>
+    <strong style="color:var(--c3);">屬虎（三合火局）</strong> — 能量關鍵字：啟動。才華終於有施展之地，貴人頻率高，適合大膽出擊開啟新局。<br>
+    <strong style="color:var(--c3);">屬狗（三合火局）</strong> — 能量關鍵字：整合。2026年的收割者，過去幾年努力開始大規模變現，資源主動向你靠攏。<br>
+    <strong style="color:var(--c3);">屬羊（六合太歲）</strong> — 能量關鍵字：人脈。隱形贏家，暗貴人多，直覺力在今年達到巔峰，適合運籌帷幄型策略。</p>
+    <p class="tc"><strong style="color:#FF8080;">★ 覺察的勇士——最該注意的生肖：</strong><br>
+    <strong>屬馬（值太歲·自刑）</strong> — 能量關鍵字：重置。聚光燈年，做好掌聲是平常的十倍，做壞嘘聲也是平常的十倍。徹底重置系統。<br>
+    <strong>屬鼠（沖太歲）</strong> — 能量關鍵字：位移。主動搬遷、出差、轉職，把被動災難轉為主動動能。<br>
+    <strong>屬牛（害太歲）</strong> — 能量關鍵字：獨立。人際關係特別消耗，把重心收回自身，不向外求認可。<br>
+    <strong>屬兔（破太歲）</strong> — 能量關鍵字：斷捨離。不破不立，主動花錢在自我提升，先破才能建新。</p>
+    <p class="tc"><strong style="color:var(--muted);">★ 中性觀察組：</strong>屬蛇（火勢助長，展才華但小心過熱）；屬猴（金被火克，壓力是煉金過程，靈感爆棚）；屬雞（紅鸞星動，桃花人緣是今年避風港）；屬龍（火生土，適合進修學習）；屬豬（暗合太歲，保持低調制勝，長線布局2027大爆發）。</p>
+    <p class="tc">在2026年，赤馬能量是公平的，它給了虎狗羊「順風船」，也給了鼠牛馬兔「衝浪板」。最重要的不是你的生肖是什麼，而是你如何使用你的生肖能量。</p>
+    <p class="sc">跳级组（虎马狗羊）；注意组（马鼠牛兔）；中性组（蛇猴鸡龙猪）。最重要的是如何使用你的生肖能量，不是生肖本身。</p>
+    <p class="en">Upgrade Group (Tiger·Dog·Goat); Caution Group (Horse·Rat·Ox·Rabbit); Neutral Group (Snake·Monkey·Rooster·Dragon·Pig). What matters most isn't which zodiac you are, but how you use your zodiac energy.</p>
+  </div>
+</div>
+
+<div class="full-section" id="fc4b">
+  <div class="full-section-title tc">4.2 各生肖金錢·豐盛篇</div>
+  <div class="full-section-title sc">4.2 各生肖金钱·丰盛篇</div>
+  <div class="full-section-title en">4.2 Wealth & Abundance by Zodiac</div>
+  <div class="full-body">
+    <p class="tc">「火」克「金」不代表金錢消失，而是舊有的賺錢模式會死掉，懂得引導液態金水的人能把它塑造成任何形狀。</p>
+    <p class="tc"><strong style="color:#FF9A3C;">🔥 火焰戰隊（虎·馬·狗）——財富密碼：擴張</strong><br>
+    屬虎：啟動新局，大膽嘗試，貴人會在你行動後出現。<br>
+    屬馬：品牌變現，今年是「賣自己」最好的一年，適合把個人影響力轉化為收入。（注意：值太歲，勿過度冒進）<br>
+    屬狗：資產收割，把過去3年建立的資源逐一變現。</p>
+    <p class="tc"><strong style="color:#80C0FF;">🌊 流動戰隊（鼠·猴·龍）——財富密碼：衝浪</strong><br>
+    屬鼠：位移生財，錢在遠方不在家鄉，適合跨境電商或異地發展。<br>
+    屬猴：技術煉金，做別人嫌難的案子，高門檻技術是你的護城河。<br>
+    屬龍：平台槓桿，做中介搭建平台，收過路費式收入。</p>
+    <p class="tc"><strong style="color:var(--c1);">⚗️ 煉金戰隊（蛇·雞·牛）——財富密碼：精工</strong><br>
+    屬蛇：轉型升級，老店新開，把舊有的專業包裝成新的高頻產品。<br>
+    屬雞：人緣財，透過介紹、仲介、合作分潤的方式賺錢。<br>
+    屬牛：穩健防守，財不露白，不要讓外人知道你的資產狀況。</p>
+    <p class="tc"><strong style="color:#80FF80;">🌿 森林戰隊（豬·兔·羊）——財富密碼：滋養</strong><br>
+    屬兔：布施破局，主動花錢在身心靈，以「主動流出」代替「被動失去」。<br>
+    屬羊：顧問財，靠腦袋與嘴巴賺錢，高端知識型服務。<br>
+    屬豬：隱形獲利，長線布局，低調蓄積，2027年大爆發。</p>
+    <p class="tc"><strong style="color:var(--c1);">通用財富心法：</strong>①火年不留現金，現金會被通膨燒掉，把錢轉為資產；②速度就是金錢，看到機會三秒鐘做決定，猶豫是貧窮的根源；③顯化需要熱情，保持像玩遊戲般的興奮感去面對金錢。</p>
+    <p class="sc">四组战队：火焰（虎马狗·扩张）；流动（鼠猴龙·冲浪）；炼金（蛇鸡牛·精工）；森林（猪兔羊·滋养）。通用：不留现金、三秒决定、保持热情。</p>
+    <p class="en">4 Squads: Fire (Tiger·Horse·Dog — expand); Flow (Rat·Monkey·Dragon — surf); Alchemy (Snake·Rooster·Ox — precision); Forest (Pig·Rabbit·Goat — nourish). Universal: no cash hoarding; decide in 3 seconds; stay passionate about earning.</p>
+  </div>
+</div>
+
+<div class="full-section" id="fc4c">
+  <div class="full-section-title tc">4.3 各生肖桃花·幸福篇</div>
+  <div class="full-section-title sc">4.3 各生肖桃花·幸福篇</div>
+  <div class="full-section-title en">4.3 Love & Happiness by Zodiac</div>
+  <div class="full-body">
+    <p class="tc">2026年的桃花運不再是霧裡看花，而是烈火見真金。虛假的關係會被燒毀，真實的靈魂伴侶會像兩團火光一樣迅速認出彼此。今年脫單的秘訣只有一個字：「真」。</p>
+    <p class="tc"><strong style="color:#FF9A3C;">🌹 紅鸞天喜組（雞·羊·蛇）——頭獎得主：</strong><br>
+    屬雞（紅鸞星動）：單身者多出席熱鬧場合，站在那裡那個人就會走向你；有伴者，今年是求婚結婚的最佳時機。<br>
+    屬羊（六合太歲）：緣分藏在舊識或朋友圈介紹，一起做一件事感情自然升溫。<br>
+    屬蛇：今年看上誰就直接釋放信號，你的眼神特別有電；有伴者安排一次私密旅行重燃熱情。</p>
+    <p class="tc"><strong style="color:#FF8080;">⚡ 波動轉化組（鼠·馬·牛·兔）——衝突是鐵錘，扛住就成長：</strong><br>
+    屬鼠：異地緣分機率高，「小別勝新歡」，適當保有獨立空間。<br>
+    屬馬（自刑）：單身者先愛自己，去健身去打扮，當你愛上自己那一刻真愛就出現；有伴者練習「暫停三分鐘」，不說那句最傷人的話。<br>
+    屬牛（害太歲）：直球對決，直接問「我們現在是什麼關係？」，衝突就是光！<br>
+    屬兔（破太歲）：打破舊標準，接受以前不會考慮的類型；有伴者建立新的儀式感。</p>
+    <p class="tc"><strong style="color:var(--muted);">🍵 穩健守護組（虎·狗·豬·龍·猴）：</strong>感情運勢相對平穩，你們是那杯溫暖的茶，踏實經營即可。</p>
+    <p class="tc"><strong style="color:var(--c1);">莫子心輪擴展冥想：</strong>閉眼深呼吸，想象胸口心輪有一朵含苞待放的粉紅色玫瑰。金色陽光從頭頂照下溫暖這朵玫瑰。想象玫瑰上有黑斑（以前感情留下的傷），當陽光變成神聖的火，把黑斑燒成灰燼。玫瑰層層綻放，發出粉紅色光芒擴展到整個房間。默念：「我已準備好，我敞開我的心，迎接那個與我靈魂共振的人。」每晚睡前做三分鐘，你的氣場會完全改變。</p>
+    <p class="sc">头奖组（鸡羊蛇）；波动组（鼠马牛兔，冲突是成长的铁锤）；稳健组（虎狗猪龙猴）。心轮冥想：观想粉红玫瑰开放，默念「我准备好接受与我共振的灵魂」。</p>
+    <p class="en">Top group (Rooster·Goat·Snake); Turbulence group (Rat·Horse·Ox·Rabbit — conflict = growth); Steady group (Tiger·Dog·Pig·Dragon·Monkey). Heart chakra meditation: visualize a pink rose blooming in your chest, burning away old wounds, then opening fully and radiating light.</p>
+  </div>
+</div>
+
+<div class="full-section" id="fc4d">
+  <div class="full-section-title tc">4.4 各生肖健康·平安篇</div>
+  <div class="full-section-title sc">4.4 各生肖健康·平安篇</div>
+  <div class="full-section-title en">4.4 Health & Safety by Zodiac</div>
+  <div class="full-body">
+    <p class="tc">2026年健康課題只有兩個字：「發炎」。赤馬是烈火，對應人體就是心火旺、血壓高、情緒躁。如果說平常生病是因為「虛」，那麼2026年生病都是因為「實」——能量太過載了。「火」旺則「水」乾，腎臟、膀胱、生殖系統也要特別注意。</p>
+    <p class="tc"><strong style="color:var(--c3);">各組健康重點：</strong><br>
+    心血管高壓組（馬·鼠·蛇）：多吃紅色護心食物配苦味降火食物；屬鼠每天晚上泡腳引火下行；屬蛇多喝綠豆湯、菊花茶清熱解毒。<br>
+    呼吸神經敏感組（猴·雞·兔）：多吃白色潤肺食物（百合、銀耳），多做深呼吸；屬兔晚上11點前一定要睡覺。<br>
+    代謝消化組（牛·龍·羊·狗·豬·虎）：每週進行一天輕斷食，給脾胃一個喘息空間。</p>
+    <p class="tc"><strong style="color:var(--c3);">化解血光之災——主動應劫法：</strong><br>
+    最高級：去捐血（建議在農曆五月或生日前後）。<br>
+    日常：安排洗牙、微整形或體檢抽血。<br>
+    以主動見血，滿足宇宙的能量守恆，把被動災難轉化為功德。</p>
+    <p class="tc"><strong style="color:var(--c3);">居家降火布局：</strong>正南方（離位）是2026年最旺的火位，勿堆雜物，建議放一杯水或鹽燈平衡磁場。</p>
+    <p class="tc"><strong style="color:var(--c1);">本章關鍵字：「慢」。</strong>外面越快，你內心要越慢去養心；外面越熱，你心裡要越涼。心定則身安，身安則道隆。每天補水儀式：喝水時看著杯中的水，想象它是一道清涼的藍光，喝下去時感受藍光流經喉嚨、胃，匯入丹田，默念：「感謝水的滋養，清洗我的火毒，平衡我的身心。」</p>
+    <p class="sc">健康主题：发炎。心血管组（马鼠蛇）注意心脏；呼吸组（猴鸡兔）注意肺；代谢组其余生肖注意脾胃。化解血光：捐血（最高级）、洗牙、体检。正南方放水杯或盐灯。关键字：慢。</p>
+    <p class="en">Health theme: Inflammation. Cardiovascular group (Horse·Rat·Snake); Respiratory group (Monkey·Rooster·Rabbit); Metabolic group (others). Neutralize accident energy: donate blood (best around Lunar May or birthday), dental cleaning, blood tests. Home: keep True South clear, place water or salt lamp. Key word: SLOW. The faster the world moves, the more still your heart must be.</p>
+  </div>
+</div>
+
+<div class="full-section" id="fc4e">
+  <div class="full-section-title tc">4.5 各生肖工作·事業篇</div>
+  <div class="full-section-title sc">4.5 各生肖工作·事业篇</div>
+  <div class="full-section-title en">4.5 Work & Career by Zodiac</div>
+  <div class="full-body">
+    <p class="tc"><strong style="color:var(--c3);">2026年職場三大鐵律：</strong><br>
+    ①AI不是工具，是你的外掛能量——能與AI共舞、提升十倍產出的人，就是職場的贏家。<br>
+    ②情緒價值是最高的溢價——當全世界都在焦慮，誰能提供安寧跟力量，誰就擁有定價權。<br>
+    ③真實性就是流量——赤馬的「火」會照穿所有的包裝，分享你的脆弱與學習過程反而比扮演完美專家更能吸引資源。</p>
+    <p class="tc"><strong style="color:var(--c3);">四大生肖事業能量詳解：</strong><br>
+    <strong style="color:#FF9A3C;">爆發型（虎·馬·狗）</strong> — 赤馬年的主角，自帶渦輪增壓。天賦方向：從零到一的創業開拓，把個人魅力轉化為影響力。注意：屬馬（值太歲）避免在能量過剩時做重大決策。<br>
+    <strong style="color:#80C0FF;">創新型（鼠·猴·龍）</strong> — 水火激盪，變動中求富貴。天賦：解決高門檻難題的技術煉金術師；擔任平台架設者收過路費。屬鼠主動申請異地調派。<br>
+    <strong style="color:var(--c1);">耕耘型（蛇·雞·牛）</strong> — 火煉金的提純過程，真實的實力會留下來。天賦：專業技術深耕；人際財富連結（雞，紅鸞星動）。屬牛注意口舌與合約陷阱。<br>
+    <strong style="color:#80FF80;">療愈型（豬·兔·羊）</strong> — 赤馬「火」能量的滋養者。天賦：能量供給與心理服務；體驗設計師。屬兔主動破局，打破舊的勞碌習慣。</p>
+    <p class="tc"><strong style="color:var(--c3);">職場跳階三大實戰技術：</strong><br>
+    ①三秒爆破法：在職場上有新機會或靈感閃過，三秒內做出物理動作，猶豫超過三天赤馬能量就冷卻成壓力。<br>
+    ②意識檢定術：聽到辦公室有人傳播恐懼時，立刻在心裡剪斷那條黑色的能量線，不讓集體焦慮感染你的創造力。<br>
+    ③顯化共振預言：在重要會議或提案前，先在心裡全息感受到成功的爽快感，宇宙分不清真假，會拼命調動資源來填補落差。</p>
+    <p class="sc">三大铁律：①AI是外挂能量；②情绪价值是最高溢价；③真实性就是流量。四组：爆发型（虎马狗）、创新型（鼠猴龙）、耕耘型（蛇鸡牛）、疗愈型（猪兔羊）。三大实战技术：三秒爆破、意识检定、显化共振预言。</p>
+    <p class="en">3 Workplace laws: ① AI = superpower; ② Emotional value = highest premium; ③ Authenticity = traffic. 4 Groups: Explosive (Tiger·Horse·Dog), Innovative (Rat·Monkey·Dragon), Cultivating (Snake·Rooster·Ox), Healing (Pig·Rabbit·Goat). 3 Career leap techniques: 3-Second Burst; Belief Audit (cut anxiety cords); Pre-Success Resonance (inhabit success before important meetings).</p>
+  </div>
+</div>
+```
+
+  </div>
+
+  <div class="full-divider"><span>✦</span></div>
+
+  <!-- CH 5 -->
+
+  <div class="full-chapter" id="fc5">
+    <div class="full-chapter-header">
+      <div class="full-chapter-num">CHAPTER FIVE · 第五章</div>
+      <div class="full-chapter-title tc">值·沖·刑·破·害太歲全解析</div>
+      <div class="full-chapter-title sc">值·冲·刑·破·害太岁全解析</div>
+      <div class="full-chapter-title en">Complete Tai Sui Analysis: All Five Relationships</div>
+    </div>
+
+```
+<div class="full-section" id="fc5a">
+  <div class="full-section-title tc">5.1 太歲不是壞，是「提醒」——重新定義太歲</div>
+  <div class="full-section-title sc">5.1 太岁不是坏，是「提醒」——重新定义太岁</div>
+  <div class="full-section-title en">5.1 Tai Sui Is Not Bad — It's a "Reminder"</div>
+  <div class="full-body">
+    <p class="tc">傳統文化裡，提到「太歲」大家聯想到的通常是恐懼。但恐懼源於無知——如果你看懂了太歲能量的本質，你會發現它根本不是懲罰你的神明，而是宇宙設定好的高強度提醒鬧鐘。</p>
+    <p class="tc"><strong style="color:var(--c3);">太歲的天文本質：</strong>在天文學上，太歲對應的是木星，木星的體積是地球的1300倍，重力場跟磁場非常強大。當木星運行到特定軌道，對地球發射出一股強烈的能量波。這股能量波像是一個巨大的放大鏡——太歲本身沒有吉凶，只是把你的狀態放大。當能量被放大，你平常忽略的小問題（身體的小發炎、關係的小裂痕、財務的小漏洞）就會變得非常明顯，讓你不得不面對。這就是宇宙在說：「這裡有個Bug，趕快修正，不然系統要宕機了。」</p>
+    <p class="tc"><strong style="color:#FF9A3C;">值太歲（馬）——站在聚光燈下的期中考：</strong>你被一把抓起來丟到舞台正中央，打了幾千瓦的聚光燈。做好了，掌聲是平常的十倍；做壞了，嘘聲也是平常的十倍。這是你的期中考，宇宙在問：「過去十二年你學到了什麼？」建議：今年不要躲，站在舞台上，深呼吸，把腰幹挺直，你的任務不是避災，而是展現。</p>
+    <p class="tc"><strong style="color:#80C0FF;">沖太歲（鼠）——必衰還是必發？：</strong>「沖」代表改變。兩台車對撞是災難，但海浪拍打岸邊是發電的能量。沖太歲的年份，宇宙強制執行斷捨離，把你從舒適環境衝出來。為什麼有人衰？因為他抗拒改變。為什麼有人發？因為他順勢而為。建議：「主動的位移」——主動安排旅行、出差、搬家，讓身體處於「動」的狀態，就能化解衝煞。</p>
+    <p class="tc"><strong style="color:var(--c1);">害太歲（牛）——情緒內耗與人際考驗：</strong>你會覺得今年人際關係特別卡，對人好別人不領情，原本談好的合作莫名破局。解讀：害太歲是在提醒你，你的付出是不是失去了界限？宇宙逼你學會愛自己，把向外索求認可的能量收回到內在的完整性。</p>
+    <p class="tc"><strong style="color:#80FF80;">破太歲（兔）——結構的破壞與重建：</strong>原本計劃好的事情很容易被打斷，可能有突發財務支出或人際破裂。解讀：「不要怕破」。不破不立，那些破掉的東西都是因為它腐朽了、不再適合新版本的你，太歲幫你敲碎是為了讓你騰出空間建造更堅固的堡壘。建議：主動硬破——主動花錢在投資自己、做公益；主動打破舊習慣。</p>
+    <p class="tc"><strong style="color:#FF8080;">刑太歲（馬，自刑）——跟自己過不去：</strong>屬馬的朋友除了值太歲同時還自刑。你會陷入鑽牛角尖、過度焦慮、自我批判的迴圈，外在沒人逼你，是你自己逼死自己。解讀：「這是宇宙在提醒你：放過你自己吧。」刑太歲的一年是進行心理咨詢、靈性療愈最好的時機。</p>
+    <p class="tc">結語：值太歲要你站上舞台；沖太歲要你離開舒適圈；害太歲要你學會界限；破太歲要你清理斷捨離；刑太歲要你和解內在。這哪裡是災難？這明明是一個嚴格的健身教練。太歲年不是衰運年，是人生高強度的訓練年。</p>
+    <p class="sc">太岁=木星放大镜，本身没有吉凶，只是放大你的状态。值太岁（马）：期中考，展现不躲；冲太岁（鼠）：主动位移化解；害太岁（牛）：收回界限爱自己；破太岁（兔）：主动硬破先破后立；刑太岁（马自刑）：放过自己，寻求疗愈。太岁年是高强度训练年，不是衰运年。</p>
+    <p class="en">Tai Sui = Jupiter magnifier, amplifies your state with no inherent fortune or misfortune. Hosting (Horse) — midterm exam, stand and be seen; Clashing (Rat) — proactive movement dissolves the impact; Harming (Ox) — reclaim your boundaries and love yourself; Breaking (Rabbit) — proactively break to build stronger; Self-Punishment (Horse) — let yourself off the hook, seek healing. Tai Sui years are high-intensity training years, not misfortune years.</p>
+  </div>
+  <div class="full-hw">
+    <span class="full-hw-label">下課作業 · HOMEWORK</span>
+    <p class="full-hw-text tc">今晚，在你心裡或寫下來，對2026年的太歲能量說：「教練，我知道你來了，我不會逃避，我已經準備好接受你的提醒並完成我的跳級。」</p>
+    <p class="full-hw-text sc">今晚对太岁能量说：「教练，我知道你来了，我不会逃避，我准备好接受你的提醒并完成我的跳级。」</p>
+    <p class="full-hw-text en">Tonight, say to the Tai Sui energy: "Coach, I know you're here. I won't run. I'm ready to receive your reminder and complete my level-up."</p>
+  </div>
+</div>
+
+<div class="full-section" id="fc5b">
+  <div class="full-section-title tc">5.2 遇到太歲的終極攻略：把衰運年變暴衝年</div>
+  <div class="full-section-title sc">5.2 遇到太岁的终极攻略：把衰运年变暴冲年</div>
+  <div class="full-section-title en">5.2 Ultimate Tai Sui Strategy: Turn a Bad Year into a Breakout Year</div>
+  <div class="full-body">
+    <p class="tc"><strong style="color:var(--c3);">核心內功——面對太歲的正確心態：</strong><br>
+    <strong>從受害者轉為使用者：</strong>一般人說「慘了，今年犯太歲，求太歲不要弄我」——這是把自己放在受害者的位置，越恐懼頻率越低，越容易吸引倒霉事。要改寫潛意識：把「犯太歲」改成「用太歲」。太歲是宇宙借給你的強大力量，就像狂風——受害者說「風好大，我的屋頂要被掀翻了」，使用者說「風好大，我的風力發電機要發大財了」。每天早上告訴自己：「太歲是我的合夥人，它負責提供能量，我負責決定方向。」<br>
+    <strong>保持觀察者的距離：</strong>太歲年情緒波動大，如果你認同了這些情緒就會被捲進去。練習抽離：當你生氣時，想象靈魂飄出體外，看著那個生氣的自己，笑著說：「哦，太歲能量又來了，真有趣。」當你不認同那個情緒，那個情緒的破壞力就會歸零。</p>
+    <p class="tc"><strong style="color:#FF8080;">避雷指南——讓太歲更嚴重的三大禁忌：</strong><br>
+    <strong>禁忌一：口出惡言與抱怨</strong> — 在太歲年你的嘴巴就是顯化麥克風，越抱怨太歲就越讓你的抱怨成真。今年絕對禁止在公共場合（包括網路）吵架或抱怨，練習「止語」或「只說祝福的話」。<br>
+    <strong>禁忌二：囤積與停滯</strong> — 太歲能量喜歡「動」。如果你家裡堆滿雜物、錢只進不出、腦袋不肯學新東西，這叫做「能量的淤塞」。太歲這股大水衝過來遇到淤塞會決堤，就是生大病或破大財。<br>
+    <strong>禁忌三：在深夜做重大決定</strong> — 2026年午火在白天最旺，深夜是情緒最容易失控的時刻。絕對不要在晚上11點後做任何重大決定，先睡一覺，等太陽出來再說。</p>
+    <p class="tc"><strong style="color:var(--c3);">實戰攻略——把太歲年變成暴衝年：</strong><br>
+    <strong>①穿對顏色、借力使力：</strong>屬馬屬蛇（火旺）：多穿黃色、大地色卸掉火氣；或穿黑色深藍色引水降溫；忌全身大紅大紫。屬鼠屬豬（水旺）：多穿綠色，水生木木生火當通關橋梁。屬猴屬雞（金弱）：多穿黃色白色，土生金保護你。<br>
+    <strong>②主動應劫：</strong>破財消災——規劃一筆太歲預算，主動捐款或報名昂貴課程投資自己，錢花出去了，能量平衡了，災就消了。血光化解——主動獻血、洗牙。<br>
+    <strong>③太歲契約儀式（終極大招）：</strong>找一個安靜的早晨，準備一張紅紙、一支黑筆，寫下：<em style="color:var(--c3);">「致2026年的太歲能量，我XXX感謝你的到來，我接受你的挑戰與洗禮。我承諾在這一年保持覺知、利他助人，請將你的衝擊力轉化為我人生升級的推進力。」</em>將這張紙折好，放在枕頭底下或皮包裡。每當恐懼時摸摸這張紙，它會提醒你：「你已經跟宇宙簽了約，你是被支持的。」</p>
+    <p class="sc">核心心态：从「受害者」变「使用者」，把「犯太岁」改为「用太岁」。三大禁忌：①口出恶言（嘴是显化麦克风）；②囤积停滞（能量淤塞会决堤）；③深夜做重大决定（11点后不决策）。实战：穿对颜色；主动应劫（捐血捐款）；太岁契约仪式（红纸写承诺放枕头或皮包）。</p>
+    <p class="en">Core mindset: shift from "victim" to "user" — replace "offending Tai Sui" with "using Tai Sui." Tai Sui is power on loan from the universe. 3 Forbidden behaviors: ① Complaining (mouth = manifestation microphone); ② Hoarding and stagnation (blocked energy bursts); ③ Major decisions after 11pm. Action plan: wear the right colors; proactive discharge (donate blood/money); Tai Sui Contract Ritual — write on red paper: "I, [name], thank the Tai Sui energy, accept the challenge, commit to awareness and service, and ask that your force be converted into the propulsion for my life upgrade." Keep it under your pillow or in your bag.</p>
+  </div>
+</div>
+```
+
+  </div>
+
+  <div class="full-divider"><span>✦</span></div>
+
+  <div class="full-closing">
+    <p class="tc">所有的運勢、風水、能量，最後都回歸到一個點——就是你的心。<br><br>
+    2026年世界會很亂，但你的心可以很定；外面的火很大，但你是可以煉金的金爐，而不是被燒的柴。你不用依賴我，也不用依賴算命師。這一堂課的目的是把力量交還給你。你本身就是那個圓滿的覺知，你本身就具備顯化一切豐盛的能力。<br><br>
+    願你在2026年騎上赤馬，跨越障礙，看見那個更偉大的自己。感謝這段時間我們的相伴，祝福大家平安、豐盛、喜悅，我們在更高的維度見。<br><br>
+    ✦ 平安 · 豐盛 · 喜悅 ✦<br>
+    <span style="font-size:13px;opacity:.6;">— 莫子</span></p>
+    <p class="sc">所有的运势、风水、能量，最后都回归到一个点——就是你的心。<br><br>
+    2026年世界会很乱，但你的心可以很定；外面的火很大，但你是可以炼金的金炉，而不是被烧的柴。这一堂课的目的是把力量交还给你。你本身就是那个圆满的觉知，你本身就具备显化一切丰盛的能力。<br><br>
+    愿你在2026年骑上赤马，跨越障碍，看见那个更伟大的自己。祝福大家平安、丰盛、喜悦，我们在更高的维度见。<br><br>
+    ✦ 平安 · 丰盛 · 喜悦 ✦<br>
+    <span style="font-size:13px;opacity:.6;">— 莫子</span></p>
+    <p class="en">All fortune, feng shui, and energy ultimately return to one single point — your heart.<br><br>
+    The world in 2026 will be turbulent, but your heart can be still. The fire outside is enormous, but you are the forge that refines gold — not the wood that gets burned. This course exists to return power to you. You are already whole awareness. You already carry the capacity to manifest all abundance.<br><br>
+    May you ride the Red Horse in 2026, leap over every obstacle, and encounter a greater version of yourself.<br>
+    Peace, abundance, and joy — see you at a higher dimension.<br><br>
+    ✦ Peace · Abundance · Joy ✦<br>
+    <span style="font-size:13px;opacity:.6;">— Mo Zi</span></p>
+  </div>
+
+</div>
+</div>
+<!-- ══════ END FULL TEXT PAGE ══════ -->
+
+<!-- TTS Bar -->
+
+<div id="tts-bar">
+  <button class="tts-btn tts-play" id="tts-play-btn" onclick="ttsToggle()">
+    <span class="tc">▶ 朗讀</span><span class="sc">▶ 朗读</span><span class="en">▶ Read</span>
+  </button>
+  <button class="tts-btn tts-stop" id="tts-stop-btn" onclick="ttsStop()" style="display:none">
+    <span class="tc">■ 停止</span><span class="sc">■ 停止</span><span class="en">■ Stop</span>
+  </button>
+  <div class="tts-speed">
+    <label class="tc">速度</label><label class="sc">速度</label><label class="en">Speed</label>
+    <input type="range" id="spd" min=".5" max="1.8" step=".05" value=".95" oninput="spdChange(this.value)">
+    <span id="spd-val">0.95×</span>
+  </div>
+  <div class="tts-progress-wrap"><div id="tts-prog"></div></div>
+  <div class="tts-font">
+    <button class="fs-btn" onclick="chFS(-1)">A-</button>
+    <span id="fs-disp">15px</span>
+    <button class="fs-btn" onclick="chFS(1)">A+</button>
+  </div>
+</div>
+
+<script>
+/* ─── STARS ─── */
+const sf=document.getElementById('stars');
+for(let i=0;i<120;i++){
+  const s=document.createElement('div');s.className='star';
+  const sz=Math.random()*2+.5;
+  s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${2+Math.random()*4}s;--dl:${-Math.random()*5}s;opacity:${Math.random()*.5+.1}`;
+  sf.appendChild(s);
+}
+
+/* ─── NAV ─── */
+function goPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  const btns=document.querySelectorAll('.nav-btn');
+  const map={home:0,course:1,zodiac:2,card:3,full:4};
+  if(map[id]!==undefined)btns[map[id]].classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ─── LANG ─── */
+function setLang(l,btn){
+  document.body.className='lang-'+l;
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.documentElement.lang=l==='en'?'en':'zh-'+l.toUpperCase().replace('TC','Hant').replace('SC','Hans');
+  if(ttsUtt)ttsStop();
+}
+
+/* ─── COURSE TABS ─── */
+function cTab(id,btn){
+  document.querySelectorAll('.c-section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.c-tab').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+/* ─── ZODIAC DATA ─── */
+const ZD={
+  rat:{ani:'🐭',tc:{name:'鼠',taiSui:'沖太歲',status:'位移年',type:'warn',
+    fortune:{money:'⭐⭐⭐',love:'⭐⭐⭐',health:'⭐⭐⭐⭐',work:'⭐⭐⭐'},
+    summary:'強制斷捨離，宇宙逼你離開舒適圈。主動「動」起來，就能把被動災難轉為主動動能。',
+    actions:['主動換工作或部門，避免被動裁員','安排一次旅行或短居，以移動化解沖煞','3月前清理家中舊物，特別是床底及角落','避免大額借貸及槓桿投資','捐血一次，化解血光之災'],
+    hw:'這個月找出一件你一直在逃避的「沖突」——工作、感情、或積累已久的決定——主動面對它，讓沖的力量為你服務。'},
+  sc:{name:'鼠',taiSui:'冲太岁',status:'位移年',type:'warn',
+    summary:'强制断舍离，宇宙逼你离开舒适圈。主动「动」起来，就能把被动灾难转为主动动能。',
+    actions:['主动换工作或部门，避免被动裁员','安排一次旅行或短居，以移动化解冲煞','3月前清理家中旧物，特别是床底及角落','避免大额借贷及杠杆投资','捐血一次，化解血光之灾'],
+    hw:'这个月找出一件你一直在逃避的「冲突」——工作、感情、或积累已久的决定——主动面对它，让冲的力量为你服务。'},
+  en:{name:'Rat',taiSui:'Clashing Tai Sui',status:'Relocation Year',type:'warn',
+    summary:'Forced decluttering. The universe pushes you out of your comfort zone. Move proactively — turn passive disaster into active momentum.',
+    actions:['Proactively change jobs or departments before being let go','Plan a trip or short relocation to neutralize the clash energy','Declutter your home before March, especially under beds and corners','Avoid large loans or leveraged investments','Donate blood once to discharge accident energy'],
+    hw:'This month, find one "clash" you\'ve been avoiding — work, relationship, or a long-delayed decision — and face it head-on. Let the clashing force work for you.'}},
+
+  ox:{ani:'🐮',tc:{name:'牛',taiSui:'害太歲',status:'獨立年',type:'warn',
+    fortune:{money:'⭐⭐⭐',love:'⭐⭐',health:'⭐⭐⭐',work:'⭐⭐⭐'},
+    summary:'人際關係特別消耗，容易遭遇背刺或合作破局。把重心收回自身，不向外求認可，才能保全自己。',
+    actions:['重要決策不找他人背書，相信自己的判斷','暫停需要大量人脈的新計劃','定期做身體檢查，特別關注腸胃與呼吸系統','多做利他善事以補足害的能量缺口','學習一門可以獨立運作的技能'],
+    hw:'設定一個「自我認可計劃」：今天起每天做一件讓自己驕傲的小事，並寫下來。'},
+  sc:{name:'牛',taiSui:'害太岁',status:'独立年',type:'warn',
+    summary:'人际关系特别消耗，容易遭遇背刺或合作破局。把重心收回自身，不向外求认可，才能保全自己。',
+    actions:['重要决策不找他人背书，相信自己的判断','暂停需要大量人脉的新计划','定期做身体检查，特别关注肠胃与呼吸系统','多做利他善事以补足害的能量缺口','学习一门可以独立运作的技能'],
+    hw:'设定一个「自我认可计划」：今天起每天做一件让自己骄傲的小事，并写下来。'},
+  en:{name:'Ox',taiSui:'Harming Tai Sui',status:'Independence Year',type:'warn',
+    summary:'Relationships are draining. Betrayals and broken partnerships are likely. Recenter on yourself — stop seeking external validation to protect your energy.',
+    actions:['Make important decisions without seeking others\' endorsement','Pause projects that require extensive networking','Get regular health checkups, especially for digestive and respiratory systems','Practice generous giving to fill the energy gap','Learn a skill you can operate independently'],
+    hw:'Start a "self-approval plan": each day, do one small thing you\'re proud of and write it down.'}},
+
+  tiger:{ani:'🐯',tc:{name:'虎',taiSui:'三合火局',status:'跳級組',type:'fire',
+    fortune:{money:'⭐⭐⭐⭐⭐',love:'⭐⭐⭐⭐',health:'⭐⭐⭐⭐',work:'⭐⭐⭐⭐⭐'},
+    summary:'才華終於有施展之地，貴人頻率大幅提升。與馬、狗形成三合火局，是跳級組的核心成員，行動力和顯化速度都在巔峰。',
+    actions:['大膽啟動個人品牌或副業，宇宙支持你曝光','主動拓展社交圈，貴人在圈外等你','上半年適合大額投資或創業','把握演講、上台、出鏡的機會','學習新技能並快速落地，速度就是競爭力'],
+    hw:'本週做一件你一直說「等準備好了才做」的事，不管多小，今天就開始。'},
+  sc:{name:'虎',taiSui:'三合火局',status:'跳级组',type:'fire',
+    summary:'才华终于有施展之地，贵人频率大幅提升。与马、狗形成三合火局，是跳级组的核心成员，行动力和显化速度都在巅峰。',
+    actions:['大胆启动个人品牌或副业，宇宙支持你曝光','主动拓展社交圈，贵人在圈外等你','上半年适合大额投资或创业','把握演讲、上台、出镜的机会','学习新技能并快速落地，速度就是竞争力'],
+    hw:'本周做一件你一直说「等准备好了才做」的事，不管多小，今天就开始。'},
+  en:{name:'Tiger',taiSui:'Fire Triangle',status:'Upgrade Group',type:'fire',
+    summary:'Talents finally have their stage. Benefactors arrive at high frequency. Tiger, Horse, and Dog form the Fire Triangle — you\'re a core member of the upgrade group. Action power and manifestation speed are both at peak.',
+    actions:['Boldly launch your personal brand or side business','Expand your social circle — benefactors are waiting outside your current network','First half of the year is ideal for major investments or entrepreneurship','Seize opportunities to speak, perform, or be on camera','Learn new skills and deploy them quickly — speed is your competitive edge'],
+    hw:'This week, do one thing you\'ve been saying "I\'ll do it when I\'m ready" — however small. Start today.'}},
+
+  rabbit:{ani:'🐰',tc:{name:'兔',taiSui:'破太歲',status:'斷捨離年',type:'warn',
+    fortune:{money:'⭐⭐⭐',love:'⭐⭐⭐',health:'⭐⭐⭐',work:'⭐⭐⭐'},
+    summary:'破而後立。宇宙要打掉舊有的格局，為更好的版本騰出空間。主動破比被動破好——先破才能建新。',
+    actions:['主動結束沒有前途的工作或感情，不要被動等待','花錢在自我提升（課程、療愈、技能）是今年最高ROI投資','定期捐款或布施，以「主動流出」代替「被動失去」','避免在破的時機啟動大型新計劃','整理環境，特別是長期積累的舊東西'],
+    hw:'找出你生命中最大的「舊有框架」——可能是一個信念、一份工作、一段關係——問自己：它還在服務我嗎？誠實回答。'},
+  sc:{name:'兔',taiSui:'破太岁',status:'断舍离年',type:'warn',
+    summary:'破而后立。宇宙要打掉旧有的格局，为更好的版本腾出空间。主动破比被动破好——先破才能建新。',
+    actions:['主动结束没有前途的工作或感情，不要被动等待','花钱在自我提升（课程、疗愈、技能）是今年最高ROI投资','定期捐款或布施，以「主动流出」代替「被动失去」','避免在破的时机启动大型新计划','整理环境，特别是长期积累的旧东西'],
+    hw:'找出你生命中最大的「旧有框架」——可能是一个信念、一份工作、一段关系——问自己：它还在服务我吗？诚实回答。'},
+  en:{name:'Rabbit',taiSui:'Breaking Tai Sui',status:'Declutter Year',type:'warn',
+    summary:'Break to build. The universe is clearing your old structure to make space for a better version of you. Proactive breaking is far better than passive collapse — clear first, then create.',
+    actions:['Proactively end dead-end jobs or relationships rather than waiting passively','Investing in self-improvement (courses, healing, skills) is the highest-ROI investment this year','Donate or give regularly — use "active outflow" instead of suffering "passive loss"','Avoid launching major new plans during this breaking period','Declutter your environment, especially long-accumulated old items'],
+    hw:'Identify the biggest "old framework" in your life — a belief, a job, a relationship. Ask honestly: Is it still serving me?'}},
+
+  dragon:{ani:'🐲',tc:{name:'龍',taiSui:'火生土',status:'進修年',type:'gold',
+    fortune:{money:'⭐⭐⭐⭐',love:'⭐⭐⭐',health:'⭐⭐⭐⭐',work:'⭐⭐⭐⭐'},
+    summary:'火生土，太歲滋潤你。今年是深度進修、積累知識資本的好時機，暗中蓄能，2027年大爆發的基礎就在今年建立。',
+    actions:['投入至少一門系統性課程或進修計劃','拓展知識邊界，特別是跨界學習','財務操作上選擇穩健的資產，不宜激進','維持規律的作息與運動習慣','建立自己的知識輸出管道（寫作、播客等）'],
+    hw:'列出今年你最想深入學習的三個領域，並為其中一個制定具體的學習計劃。'},
+  sc:{name:'龙',taiSui:'火生土',status:'进修年',type:'gold',
+    summary:'火生土，太岁滋润你。今年是深度进修、积累知识资本的好时机，暗中蓄能，2027年大爆发的基础就在今年建立。',
+    actions:['投入至少一门系统性课程或进修计划','拓展知识边界，特别是跨界学习','财务操作上选择稳健的资产，不宜激进','维持规律的作息与运动习惯','建立自己的知识输出管道（写作、播客等）'],
+    hw:'列出今年你最想深入学习的三个领域，并为其中一个制定具体的学习计划。'},
+  en:{name:'Dragon',taiSui:'Fire Generates Earth',status:'Study Year',type:'gold',
+    summary:'Fire nourishes Earth — Tai Sui blesses you. This is ideal for deep study and accumulating knowledge capital. Build quietly in 2026, and 2027 becomes your explosion year.',
+    actions:['Enroll in at least one systematic course or training program','Expand your knowledge across disciplines','Choose stable, conservative assets financially','Maintain regular sleep and exercise habits','Build your own knowledge output channel (writing, podcasting, etc.)'],
+    hw:'List three areas you most want to study deeply this year, and create a specific learning plan for one of them.'}},
+
+  snake:{ani:'🐍',tc:{name:'蛇',taiSui:'本屬火',status:'轉型年',type:'fire',
+    fortune:{money:'⭐⭐⭐⭐',love:'⭐⭐⭐⭐',health:'⭐⭐⭐',work:'⭐⭐⭐⭐'},
+    summary:'蛇本屬火，遇赤馬如虎添翼。行動力和創造力爆棚，但小心過熱：急躁是今年最大的敵人。',
+    actions:['把握上半年轉型升級的機會','大膽說出你真正想要的，赤馬之年心想事成加速','注意管理情緒，避免因衝動損害重要關係','增加冷卻習慣：冥想、游泳、靜坐','在重要決策前強制設置24小時冷靜期'],
+    hw:'本週有意識地練習「按暫停鍵」：感到衝動時，深呼吸，等待10分鐘再行動。'},
+  sc:{name:'蛇',taiSui:'本属火',status:'转型年',type:'fire',
+    summary:'蛇本属火，遇赤马如虎添翼。行动力和创造力爆棚，但小心过热：急躁是今年最大的敌人。',
+    actions:['把握上半年转型升级的机会','大胆说出你真正想要的，赤马之年心想事成加速','注意管理情绪，避免因冲动损害重要关系','增加冷却习惯：冥想、游泳、静坐','在重要决策前强制设置24小时冷静期'],
+    hw:'本周有意识地练习「按暂停键」：感到冲动时，深呼吸，等待10分钟再行动。'},
+  en:{name:'Snake',taiSui:'Naturally Fire-Aligned',status:'Transformation Year',type:'fire',
+    summary:'Snake is naturally Fire — meeting Red Horse is like adding wings to a tiger. Action and creativity explode. But beware overheating: impulsiveness is your greatest enemy this year.',
+    actions:['Seize transformation opportunities in the first half of the year','Boldly state what you truly want — the Red Horse accelerates manifestation','Actively manage emotions; avoid impulsive damage to important relationships','Add cooling habits: meditation, swimming, stillness','Enforce a 24-hour cooling period before major decisions'],
+    hw:'This week, consciously practice "pressing pause": when you feel impulsive, take a deep breath and wait 10 minutes before acting.'}},
+
+  horse:{ani:'🐴',tc:{name:'馬',taiSui:'值太歲',status:'重置年',type:'warn',
+    fortune:{money:'⭐⭐⭐⭐',love:'⭐⭐⭐',health:'⭐⭐⭐',work:'⭐⭐⭐⭐'},
+    summary:'2026年是馬的聚光燈年。所有的行為——好與壞——都會被放大10倍。這是最快速的跳級機會，也是最快翻車的風險年。把握「徹底更新系統」的機遇。',
+    actions:['去廟裡安太歲，或做一次重要的能量清理儀式','特別注意血光之災：主動捐血或安排健康檢查','保持低調，不強出頭，不主動樹敵','重大決策要特別謹慎，多聽少說','做一件真正有意義的善事，功德加倍回報'],
+    hw:'寫下「2026年你想成為的那個人」——越具體越好：他/她的生活狀態、能力、人際關係、心靈狀態。這就是你今年的北極星。'},
+  sc:{name:'马',taiSui:'值太岁',status:'重置年',type:'warn',
+    summary:'2026年是马的聚光灯年。所有的行为——好与坏——都会被放大10倍。这是最快速的跳级机会，也是最快翻车的风险年。把握「彻底更新系统」的机遇。',
+    actions:['去庙里安太岁，或做一次重要的能量清理仪式','特别注意血光之灾：主动捐血或安排健康检查','保持低调，不强出头，不主动树敌','重大决策要特别谨慎，多听少说','做一件真正有意义的善事，功德加倍回报'],
+    hw:'写下「2026年你想成为的那个人」——越具体越好：他/她的生活状态、能力、人际关系、心灵状态。这就是你今年的北极星。'},
+  en:{name:'Horse',taiSui:'Hosting Tai Sui',status:'Reset Year',type:'warn',
+    summary:'2026 is the Horse\'s spotlight year. All behaviors — good and bad — are amplified 10x. This is the fastest upgrade opportunity and the fastest crash risk. Seize the chance for a total system reset.',
+    actions:['Perform a Tai Sui ritual at a temple or do a significant energy clearing','Guard against accidents: proactively donate blood or schedule a health checkup','Stay humble — don\'t overexpose yourself or make enemies','Exercise extra caution in major decisions; listen more, speak less','Do one truly meaningful act of generosity — the merit returns doubled'],
+    hw:'Write down "the person you want to become by end of 2026" — be as specific as possible: their lifestyle, abilities, relationships, and inner state. This is your North Star for the year.'}},
+
+  goat:{ani:'🐏',tc:{name:'羊',taiSui:'六合太歲',status:'隱形贏家',type:'gold',
+    fortune:{money:'⭐⭐⭐⭐⭐',love:'⭐⭐⭐⭐⭐',health:'⭐⭐⭐⭐',work:'⭐⭐⭐⭐⭐'},
+    summary:'六合太歲，隱形贏家！暗中助力最多，靈感與直覺達到巔峰。屬於運籌帷幄型贏家，不需要大聲吶喊，自然有資源聚攏。',
+    actions:['把直覺放在第一位，感覺對的就去做，今年直覺是你最強的GPS','積極運用人脈資源，透過介紹和推薦開展新機會','感情方面，主動出擊，羊的桃花在今年特別旺','財務可以適度冒險，尤其是上半年','記錄夢境和靈感，很多重要訊息會在睡夢中傳達'],
+    hw:'今天花15分鐘靜坐，放鬆後問自己：「2026年我最想要的一件事是什麼？」——不是應該要的，是真正想要的。寫下第一個浮現的答案。'},
+  sc:{name:'羊',taiSui:'六合太岁',status:'隐形赢家',type:'gold',
+    summary:'六合太岁，隐形赢家！暗中助力最多，灵感与直觉达到巅峰。属于运筹帷幄型赢家，不需要大声呐喊，自然有资源聚拢。',
+    actions:['把直觉放在第一位，感觉对的就去做，今年直觉是你最强的GPS','积极运用人脉资源，透过介绍和推荐开展新机会','感情方面，主动出击，羊的桃花在今年特别旺','财务可以适度冒险，尤其是上半年','记录梦境和灵感，很多重要讯息会在睡梦中传达'],
+    hw:'今天花15分钟静坐，放松后问自己：「2026年我最想要的一件事是什么？」——不是应该要的，是真正想要的。写下第一个浮现的答案。'},
+  en:{name:'Goat',taiSui:'Six Harmony Tai Sui',status:'Hidden Winner',type:'gold',
+    summary:'Six Harmony with Tai Sui — you\'re the hidden winner! Maximum behind-the-scenes support. Intuition and inspiration peak. You\'re a master strategist — resources gather around you quietly.',
+    actions:['Put intuition first — if it feels right, do it. Your intuition is your strongest GPS this year','Actively leverage your network; open new opportunities through introductions and referrals','In love, take the initiative — Goat\'s romantic energy is especially powerful this year','Moderate financial risk-taking is supported, especially in the first half','Record dreams and flashes of inspiration — important messages come during sleep'],
+    hw:'Spend 15 minutes in stillness today. When relaxed, ask yourself: "What is the ONE thing I truly want most in 2026?" — not what you should want, what you actually want. Write down the first answer that surfaces.'}},
+
+  monkey:{ani:'🐒',tc:{name:'猴',taiSui:'金被火克',status:'淬鍊年',type:'gold',
+    fortune:{money:'⭐⭐⭐⭐',love:'⭐⭐⭐',health:'⭐⭐⭐',work:'⭐⭐⭐⭐'},
+    summary:'金被火克，壓力是「煉金」的過程。靈感和點子特別值錢，技術性工作大爆發。學會把壓力轉化為創造力。',
+    actions:['將所有壓力轉化為創意能量，今年的好點子比以往多三倍','技術能力是今年的護城河，持續提升專業深度','避免與他人正面衝突，用智慧而非蠻力','財務上專注本業，不宜做自己不懂的投資','保持身體健康，特別注意心臟和血管系統'],
+    hw:'今天把你最近遇到的一個「棘手問題」重新框架為「有趣的謎題」，並花20分鐘腦力激盪出5個可能的解法。'},
+  sc:{name:'猴',taiSui:'金被火克',status:'淬炼年',type:'gold',
+    summary:'金被火克，压力是「炼金」的过程。灵感和点子特别值钱，技术性工作大爆发。学会把压力转化为创造力。',
+    actions:['将所有压力转化为创意能量，今年的好点子比以往多三倍','技术能力是今年的护城河，持续提升专业深度','避免与他人正面冲突，用智慧而非蛮力','财务上专注本业，不宜做自己不懂的投资','保持身体健康，特别注意心脏和血管系统'],
+    hw:'今天把你最近遇到的一个「棘手问题」重新框架为「有趣的谜题」，并花20分钟头脑风暴出5个可能的解法。'},
+  en:{name:'Monkey',taiSui:'Metal Meets Fire',status:'Refinement Year',type:'gold',
+    summary:'Metal meets Fire — pressure is a gold-refining process. Ideas are explosive and especially valuable. Technical work surges. Learn to transform pressure into creativity.',
+    actions:['Channel all pressure into creative energy — good ideas are 3x more plentiful this year','Technical skills are your moat; continuously deepen your expertise','Avoid direct confrontations with others — use intelligence, not brute force','Financially, focus on your core competency; avoid investments you don\'t understand','Maintain physical health; pay special attention to your heart and cardiovascular system'],
+    hw:'Today, reframe one "thorny problem" you\'ve been facing as "an interesting puzzle," and spend 20 minutes brainstorming 5 possible solutions.'}},
+
+  rooster:{ani:'🐓',tc:{name:'雞',taiSui:'紅鸞星動',status:'魅力年',type:'fire',
+    fortune:{money:'⭐⭐⭐',love:'⭐⭐⭐⭐⭐',health:'⭐⭐⭐⭐',work:'⭐⭐⭐⭐'},
+    summary:'紅鸞天喜星齊動，是十二生肖中桃花運最旺的一年！單身者大機率遇到正緣，有伴者感情升溫。人緣和魅力是今年最強的資源。',
+    actions:['多出席社交場合、聚會、展覽——正緣在外面等你','升級自己的外在形象，穿著和儀容今年特別重要','善用個人魅力開展業務合作，人緣財豐厚','感情上勇敢表白，不要等待完美時機','拍照、上鏡的機會多多把握，有助於個人品牌曝光'],
+    hw:'本週計劃一次社交活動——不管是朋友聚會還是行業交流——出現就是贏。'},
+  sc:{name:'鸡',taiSui:'红鸾星动',status:'魅力年',type:'fire',
+    summary:'红鸾天喜星齐动，是十二生肖中桃花运最旺的一年！单身者大机率遇到正缘，有伴者感情升温。人缘和魅力是今年最强的资源。',
+    actions:['多出席社交场合、聚会、展览——正缘在外面等你','升级自己的外在形象，穿着和仪容今年特别重要','善用个人魅力开展业务合作，人缘财丰厚','感情上勇敢表白，不要等待完美时机','拍照、上镜的机会多多把握，有助于个人品牌曝光'],
+    hw:'本周计划一次社交活动——不管是朋友聚会还是行业交流——出现就是赢。'},
+  en:{name:'Rooster',taiSui:'Red Phoenix Star Activated',status:'Charisma Year',type:'fire',
+    summary:'Red Phoenix and Fortune Stars both activate — the most powerful romantic fortune among all 12 signs! Singles likely to meet true love; couples see relationships deepen. Charm and social magnetism are your greatest assets.',
+    actions:['Attend social events, gatherings, and exhibitions — true connections are waiting outside','Upgrade your appearance; style and presentation are especially important this year','Use personal charisma to open business partnerships; relationship-based income flourishes','Be bold in love — confess your feelings; don\'t wait for the perfect moment','Seize photo and on-camera opportunities; they strengthen your personal brand visibility'],
+    hw:'Plan one social event this week — whether a friend gathering or an industry exchange. Showing up is already winning.'}},
+
+  dog:{ani:'🐶',tc:{name:'狗',taiSui:'三合火局',status:'整合年',type:'fire',
+    fortune:{money:'⭐⭐⭐⭐⭐',love:'⭐⭐⭐⭐',health:'⭐⭐⭐⭐',work:'⭐⭐⭐⭐⭐'},
+    summary:'三合火局核心成員，過去幾年的努力開始大規模變現！資源主動向你靠攏，是整合與收割的黃金年。',
+    actions:['主動盤點過去3年建立的資源，找出可以變現的部分','啟動你一直構想但沒有行動的計劃','在現有人脈中尋找合作機會，貴人就在身邊','財務上可以積極擴張，上半年尤其適合','分享你的成功故事，帶動他人的同時也吸引更多資源'],
+    hw:'列出過去三年你所有的「未收割成果」——技能、人脈、作品、機會——今天選出一個，想想如何在2026年讓它發光。'},
+  sc:{name:'狗',taiSui:'三合火局',status:'整合年',type:'fire',
+    summary:'三合火局核心成员，过去几年的努力开始大规模变现！资源主动向你靠拢，是整合与收割的黄金年。',
+    actions:['主动盘点过去3年建立的资源，找出可以变现的部分','启动你一直构想但没有行动的计划','在现有人脉中寻找合作机会，贵人就在身边','财务上可以积极扩张，上半年尤其适合','分享你的成功故事，带动他人的同时也吸引更多资源'],
+    hw:'列出过去三年你所有的「未收割成果」——技能、人脉、作品、机会——今天选出一个，想想如何在2026年让它发光。'},
+  en:{name:'Dog',taiSui:'Fire Triangle',status:'Harvest Year',type:'fire',
+    summary:'Core Fire Triangle member. Years of past effort begin paying off at scale! Resources flow to you naturally. This is the golden year for consolidation and harvest.',
+    actions:['Inventory all resources built over the past 3 years and identify what can be monetized','Launch the plan you\'ve been conceptualizing but never started','Find collaboration opportunities in your existing network — benefactors are already nearby','Financially aggressive expansion is supported, especially in the first half','Share your success stories — you inspire others while attracting even more resources'],
+    hw:'List all your "unharvested fruits" from the past three years — skills, network, work, opportunities. Today, pick one and think about how to make it shine in 2026.'}},
+
+  pig:{ani:'🐷',tc:{name:'豬',taiSui:'暗合太歲',status:'蓄勢年',type:'gold',
+    fortune:{money:'⭐⭐⭐⭐',love:'⭐⭐⭐⭐',health:'⭐⭐⭐⭐',work:'⭐⭐⭐⭐'},
+    summary:'暗合太歲，隱形的宇宙支持。今年保持低調是最高智慧，長線布局才是你的勝利方程式。在別人都在燃燒的時候，你在積蓄能量，等待2027年的大爆發。',
+    actions:['刻意保持低調，把成就收藏起來而不廣而告之','專注長線佈局，種下2027年收割的種子','感情方面深化現有關係，而非追求新刺激','財務上做好資產配置，為未來的擴張備糧','深化靈性修練，今年的靜默是2027年爆發的燃料'],
+    hw:'設計你的「2027藍圖」：想象2027年底你的生活——工作、財富、關係、精神狀態——把它畫下來或詳細寫下來。今天起，你做的每件事都是為了那個藍圖。'},
+  sc:{name:'猪',taiSui:'暗合太岁',status:'蓄势年',type:'gold',
+    summary:'暗合太岁，隐形的宇宙支持。今年保持低调是最高智慧，长线布局才是你的胜利方程式。在别人都在燃烧的时候，你在积蓄能量，等待2027年的大爆发。',
+    actions:['刻意保持低调，把成就收藏起来而不广而告之','专注长线布局，种下2027年收割的种子','感情方面深化现有关系，而非追求新刺激','财务上做好资产配置，为未来的扩张备粮','深化灵性修炼，今年的静默是2027年爆发的燃料'],
+    hw:'设计你的「2027蓝图」：想象2027年底你的生活——工作、财富、关系、精神状态——把它画下来或详细写下来。今天起，你做的每件事都是为了那个蓝图。'},
+  en:{name:'Pig',taiSui:'Secret Harmony Tai Sui',status:'Power Building Year',type:'gold',
+    summary:'Secret harmony with Tai Sui — invisible cosmic support. Staying low-profile is the highest wisdom this year. Long-game strategy is your winning formula. While others burn bright, you\'re accumulating for 2027\'s explosion.',
+    actions:['Deliberately stay understated; keep achievements close rather than broadcasting them widely','Focus on long-term positioning — plant seeds for 2027 harvest','In love, deepen existing relationships rather than chasing novelty','Optimize asset allocation financially; build reserves for future expansion','Deepen spiritual practice — this year\'s stillness is fuel for 2027\'s explosion'],
+    hw:'Design your "2027 Blueprint": imagine your life at the end of 2027 — work, wealth, relationships, inner state. Draw it or describe it in detail. From today, everything you do is building toward that blueprint.'}}
+};
+
+function getL(){return document.body.classList.contains('lang-sc')?'sc':document.body.classList.contains('lang-en')?'en':'tc';}
+
+function showZodiac(sign){
+  document.querySelectorAll('.z-pick').forEach(p=>p.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  const d=ZD[sign];const l=getL();const ld=d[l];
+  const tagClass=ld.type==='warn'?'z-tag-warn':ld.type==='fire'?'z-tag-fire':'z-tag-gold';
+  const tabs_tc=['財運','桃花','健康','事業'];
+  const tabs_sc=['财运','桃花','健康','事业'];
+  const tabs_en=['Wealth','Love','Health','Career'];
+  const tabs=l==='en'?tabs_en:l==='sc'?tabs_sc:tabs_tc;
+  const catL=l==='en'?['💰 Wealth','🌹 Love','💚 Health','🎯 Work']:l==='sc'?['💰 金钱','🌹 桃花','💚 健康','🎯 工作']:['💰 金錢','🌹 桃花','💚 健康','🎯 工作'];
+  const tips_tc={money:'善用液態金水思維，速度就是財富',love:'真實性是2026年最強的桃花磁場',health:'注意心火與發炎，每日補水排毒',work:'個人品牌是今年的核心競爭力'};
+  const tips_sc={money:'善用液态金水思维，速度就是财富',love:'真实性是2026年最强的桃花磁场',health:'注意心火与发炎，每日补水排毒',work:'个人品牌是今年的核心竞争力'};
+  const tips_en={money:'Liquid gold thinking — speed is wealth',love:'Authenticity is the strongest romantic magnet in 2026',health:'Watch for inflammation; hydrate and detox daily',work:'Personal brand is the core competitiveness this year'};
+  const tips=l==='en'?tips_en:l==='sc'?tips_sc:tips_tc;
+  const actionTitle=l==='en'?'Action Plan for 2026':l==='sc'?'2026行动建议':'2026行動建議';
+  const hwLabel=l==='en'?'REFLECTION':'下課作業';
+
+  const stars=ld.fortune;
+  const starlabels=Object.keys(stars);
+
+  let html=`<div class="z-detail-header">
+    <div class="z-big-ani">${d.ani}</div>
+    <div class="z-header-info">
+      <h2>${ld.name}</h2>
+      <span class="z-tag ${tagClass}">${ld.taiSui}</span>
+      <span class="z-tag z-tag-gold">${ld.status}</span>
+    </div>
+  </div>
+  <div class="z-tabs">
+    <div class="z-tab active" onclick="zTab(this,0)">${tabs[0]}</div>
+    <div class="z-tab" onclick="zTab(this,1)">${tabs[1]}</div>
+    <div class="z-tab" onclick="zTab(this,2)">${tabs[2]}</div>
+    <div class="z-tab" onclick="zTab(this,3)">${tabs[3]}</div>
+    <div class="z-tab" onclick="zTab(this,4)">${l==='en'?'Overview':l==='sc'?'总览':'總覽'}</div>
+  </div>
+  <div class="z-tab-content active" id="ztc-0">
+    <div class="z-fortune-grid">
+      <div class="zf-card"><div class="zf-icon">💰</div><div class="zf-cat">${catL[0]}</div><div class="zf-stars">${stars.money}</div><div class="zf-tip">${tips.money}</div></div>
+      <div class="zf-card"><div class="zf-icon">🌹</div><div class="zf-cat">${catL[1]}</div><div class="zf-stars">${stars.love}</div><div class="zf-tip">${tips.love}</div></div>
+      <div class="zf-card"><div class="zf-icon">💚</div><div class="zf-cat">${catL[2]}</div><div class="zf-stars">${stars.health}</div><div class="zf-tip">${tips.health}</div></div>
+      <div class="zf-card"><div class="zf-icon">🎯</div><div class="zf-cat">${catL[3]}</div><div class="zf-stars">${stars.work}</div><div class="zf-tip">${tips.work}</div></div>
+    </div>
+    <p style="font-size:14px;color:#B0A090;line-height:1.9;">${ld.summary}</p>
+  </div>
+  <div class="z-tab-content" id="ztc-1">
+    <div class="z-fortune-grid">
+      <div class="zf-card"><div class="zf-icon">💰</div><div class="zf-cat">${catL[0]}</div><div class="zf-stars">${stars.money}</div></div>
+      <div class="zf-card"><div class="zf-icon">💡</div><div class="zf-cat">${l==='en'?'Strategy':l==='sc'?'策略':'策略'}</div><div class="zf-tip" style="font-size:12px;">${tips.money}</div></div>
+    </div>
+    <p style="font-size:14px;color:#B0A090;line-height:1.9;margin-bottom:12px;">${l==='en'?'Focus on speed and high-frequency energy exchanges. Avoid cash hoarding.':l==='sc'?'聚焦高频能量的流动，避免囤积现金。':'聚焦高頻能量的流動，避免囤積現金。'}</p>
+  </div>
+  <div class="z-tab-content" id="ztc-2">
+    <div class="z-fortune-grid">
+      <div class="zf-card"><div class="zf-icon">🌹</div><div class="zf-cat">${catL[1]}</div><div class="zf-stars">${stars.love}</div></div>
+      <div class="zf-card"><div class="zf-icon">✨</div><div class="zf-cat">${l==='en'?'Key':l==='sc'?'关键':'關鍵'}</div><div class="zf-tip" style="font-size:12px;">${tips.love}</div></div>
+    </div>
+    <p style="font-size:14px;color:#B0A090;line-height:1.9;">${l==='en'?'Authenticity is the most powerful romantic force in 2026. Be real, be seen.':l==='sc'?'真实性是2026年最强的桃花磁场，勇于被看见。':'真實性是2026年最強的桃花磁場，勇於被看見。'}</p>
+  </div>
+  <div class="z-tab-content" id="ztc-3">
+    <div class="z-fortune-grid">
+      <div class="zf-card"><div class="zf-icon">💚</div><div class="zf-cat">${catL[2]}</div><div class="zf-stars">${stars.health}</div></div>
+      <div class="zf-card"><div class="zf-icon">⚕️</div><div class="zf-cat">${l==='en'?'Watch':l==='sc'?'注意':'注意'}</div><div class="zf-tip" style="font-size:12px;">${l==='en'?'Inflammation, heart fire — hydrate, rest, cool down':l==='sc'?'心火旺、发炎——补水、休息、降温':'心火旺、發炎——補水、休息、降溫'}</div></div>
+    </div>
+    <p style="font-size:14px;color:#B0A090;line-height:1.9;">${l==='en'?'2026 health theme: inflammation. Protect kidneys and cardiovascular system. Active preventive care (donating blood, checkups) neutralizes accident energy.':l==='sc'?'2026健康主题：发炎。保护肾脏和心血管系统。主动预防（捐血、体检）化解血光之灾。':'2026健康主題：發炎。保護腎臟和心血管系統。主動預防（捐血、體檢）化解血光之災。'}</p>
+  </div>
+  <div class="z-tab-content" id="ztc-4">
+    <div class="z-action-box">
+      <div class="z-action-title">${actionTitle}</div>
+      <ul class="z-action-list">${ld.actions.map(a=>`<li>${a}</li>`).join('')}</ul>
+    </div>
+    <div class="hw" style="margin-top:20px;">
+      <span class="hw-label">${hwLabel}</span>
+      <p class="hw-text">${ld.hw}</p>
+    </div>
+  </div>`;
+
+  const det=document.getElementById('z-detail');
+  det.innerHTML=html;
+  det.classList.add('show');
+  det.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function zTab(btn,idx){
+  btn.closest('.z-detail').querySelectorAll ? null : null;
+  const tabs=document.querySelectorAll('#z-detail .z-tab');
+  const contents=document.querySelectorAll('#z-detail .z-tab-content');
+  tabs.forEach(t=>t.classList.remove('active'));
+  contents.forEach(c=>c.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('ztc-'+idx).classList.add('active');
+}
+
+/* ─── CARD DATA ─── */
+const CARDS=[
+  {sym:'☀️',tc:{name:'赤馬啟動',sub:'行動之光',msg:'今天宇宙在向你發出明確的召喚——行動。那個你一直在等「對的時機」的計劃，就是今天。能量已就位，只等你踏出第一步。',aff:'我的行動創造奇蹟，我現在就開始。',do:'在今天結束前，做一件你已拖延三天以上的事情。'},
+    sc:{name:'赤马启动',sub:'行动之光',msg:'今天宇宙在向你发出明确的召唤——行动。那个你一直在等「对的时机」的计划，就是今天。能量已就位，只等你踏出第一步。',aff:'我的行动创造奇迹，我现在就开始。',do:'在今天结束前，做一件你已拖延三天以上的事情。'},
+    en:{name:'Red Horse Ignition',sub:'Light of Action',msg:'Today the universe sends you a clear calling — act. That plan you\'ve been waiting for the "right moment" for? Today is the moment. The energy is ready; all it needs is your first step.',aff:'My action creates miracles. I begin right now.',do:'Before today ends, do one thing you\'ve been putting off for 3+ days.'}},
+  {sym:'🌙',tc:{name:'內在寧靜',sub:'靜默之智',msg:'今天的訊息是停下來。在所有奔跑的噪音裡，宇宙在邀請你聆聽自己內心深處那個細小的聲音。它有重要的話要告訴你。',aff:'在靜默中，我聽見了智慧；在放鬆中，我找到了答案。',do:'今天安排30分鐘不帶任何目的地靜坐或散步，只是存在。'},
+    sc:{name:'内在宁静',sub:'静默之智',msg:'今天的讯息是停下来。在所有奔跑的噪音里，宇宙在邀请你聆听自己内心深处那个细小的声音。它有重要的话要告诉你。',aff:'在静默中，我听见了智慧；在放松中，我找到了答案。',do:'今天安排30分钟不带任何目的地静坐或散步，只是存在。'},
+    en:{name:'Inner Stillness',sub:'Wisdom of Silence',msg:'Today\'s message is: stop. Amid all the noise of running, the universe invites you to listen to that small voice deep within. It has something important to tell you.',aff:'In stillness I hear wisdom. In relaxation I find answers.',do:'Schedule 30 minutes today with no goal — just sit or walk in pure presence.'}},
+  {sym:'⚡',tc:{name:'突破臨界',sub:'轉化之力',msg:'你站在一個轉折點上。那個阻礙你的「牆」，比你以為的薄得多。今天是宇宙給你的大力一推——接住這股能量，帶著它前進。',aff:'我擁有突破一切障礙的力量，轉化就在此刻發生。',do:'找出讓你感到「卡住」的一件事，今天只做一個小小的貫穿動作。'},
+    sc:{name:'突破临界',sub:'转化之力',msg:'你站在一个转折点上。那个阻碍你的「墙」，比你以为的薄得多。今天是宇宙给你的大力一推——接住这股能量，带着它前进。',aff:'我拥有突破一切障碍的力量，转化就在此刻发生。',do:'找出让你感到「卡住」的一件事，今天只做一个小小的贯穿动作。'},
+    en:{name:'Critical Breakthrough',sub:'Power of Transformation',msg:'You\'re standing at a turning point. That "wall" blocking you is far thinner than you think. Today the universe gives you a powerful push — catch this energy and move with it.',aff:'I have the power to break through all obstacles. Transformation happens right now.',do:'Identify one thing where you feel "stuck" and make one small piercing move today.'}},
+  {sym:'💫',tc:{name:'豐盛顯化',sub:'富足之流',msg:'金錢和豐盛正在向你流動的途中。不要因焦慮而設置路障。今天打開你的「接收頻道」——放鬆，允許，感謝。',aff:'豐盛是我的自然狀態，我輕鬆地接收宇宙的禮物。',do:'今天做一件滋養自己的事，並對三件「已經擁有的好事」深深感恩。'},
+    sc:{name:'丰盛显化',sub:'富足之流',msg:'金钱和丰盛正在向你流动的途中。不要因焦虑而设置路障。今天打开你的「接收频道」——放松，允许，感谢。',aff:'丰盛是我的自然状态，我轻松地接收宇宙的礼物。',do:'今天做一件滋养自己的事，并对三件「已经拥有的好事」深深感恩。'},
+    en:{name:'Abundance Manifesting',sub:'Flow of Prosperity',msg:'Money and abundance are already flowing toward you. Don\'t set up roadblocks through anxiety. Today, open your "receiving channel" — relax, allow, and give thanks.',aff:'Abundance is my natural state. I receive the universe\'s gifts with ease.',do:'Do one nourishing thing for yourself today, and feel deep gratitude for 3 things you already have.'}},
+  {sym:'🔥',tc:{name:'赤馬火焰',sub:'創造之源',msg:'這是一張創造力的牌。今天你的靈感和創造力處於特別高頻的狀態。無論有什麼想法在腦海中翻騰，現在就把它記錄下來，不要等到「完美的時刻」。',aff:'我是創造力的管道，宇宙透過我創造奇蹟。',do:'今天用20分鐘全力以赴一個「瘋狂的點子」，不管它看起來多不現實。'},
+    sc:{name:'赤马火焰',sub:'创造之源',msg:'这是一张创造力的牌。今天你的灵感和创造力处于特别高频的状态。无论有什么想法在脑海中翻腾，现在就把它记录下来，不要等到「完美的时刻」。',aff:'我是创造力的管道，宇宙透过我创造奇迹。',do:'今天用20分钟全力以赴一个「疯狂的点子」，不管它看起来多不现实。'},
+    en:{name:'Red Horse Flame',sub:'Source of Creation',msg:'This is a creativity card. Today your inspiration and creative power are at an especially high frequency. Whatever ideas are swirling in your mind — record them now. Don\'t wait for the "perfect moment."',aff:'I am a channel for creativity. The universe creates miracles through me.',do:'Spend 20 minutes today fully pursuing one "crazy idea" — no matter how unrealistic it seems.'}},
+  {sym:'🌊',tc:{name:'情緒淨化',sub:'清流之恩',msg:'今天有什麼情緒需要被看見、被釋放。不要壓抑它，也不要被它淹沒。像旁觀者一樣看著它流過，然後讓它走。水能滅火，清澈的心是你最強的武器。',aff:'我允許情緒流動，我在情緒裡不失去自己。',do:'今天對鏡子做一次「情緒釋放呼吸法」：深吸，想象吸入藍色清涼之光；長吐，想象把所有重量都呼出去。'},
+    sc:{name:'情绪净化',sub:'清流之恩',msg:'今天有什么情绪需要被看见、被释放。不要压抑它，也不要被它淹没。像旁观者一样看着它流过，然后让它走。水能灭火，清澈的心是你最强的武器。',aff:'我允许情绪流动，我在情绪里不失去自己。',do:'今天对镜子做一次「情绪释放呼吸法」：深吸，想象吸入蓝色清凉之光；长吐，想象把所有重量都呼出去。'},
+    en:{name:'Emotional Cleansing',sub:'Grace of Clear Waters',msg:'Today there are emotions that need to be seen and released. Don\'t suppress them — and don\'t be swept away by them. Watch them flow past like an observer, then let them go. Water extinguishes fire; a clear heart is your strongest weapon.',aff:'I allow emotions to flow. I do not lose myself in them.',do:'Today, practice an "emotional release breath" in front of a mirror: deep inhale — visualize cool blue light entering; long exhale — release all weight and heaviness.'}},
+  {sym:'✨',tc:{name:'貴人降臨',sub:'緣分之門',msg:'今天的能量場特別適合與人建立連結。一個重要的相遇，可能就在今天的某個普通時刻裡發生。保持開放，保持眼睛張開，也保持你的頻率在高位。',aff:'我的光吸引與我共振的靈魂，貴人自然而然出現在我的生命裡。',do:'今天主動與一個「平時不太互動的人」真誠地交流，觀察會發生什麼。'},
+    sc:{name:'贵人降临',sub:'缘分之门',msg:'今天的能量场特别适合与人建立连结。一个重要的相遇，可能就在今天的某个普通时刻里发生。保持开放，保持眼睛张开，也保持你的频率在高位。',aff:'我的光吸引与我共振的灵魂，贵人自然而然出现在我的生命里。',do:'今天主动与一个「平时不太互动的人」真诚地交流，观察会发生什么。'},
+    en:{name:'Benefactor Arrives',sub:'Gate of Serendipity',msg:'Today\'s energy field is especially favorable for human connections. An important encounter may occur in one of today\'s ordinary moments. Stay open, keep your eyes bright, and maintain a high frequency.',aff:'My light attracts souls who resonate with me. Benefactors appear in my life naturally.',do:'Today, have a sincere exchange with someone you rarely interact with. Observe what happens.'}},
+  {sym:'🌟',tc:{name:'靈魂使命',sub:'天命之召',msg:'這張牌是在提醒你：你來到這個世界是有原因的。那個你一直知道「我應該做這件事」但還沒做的事情——宇宙今天在問你：還要等多久？',aff:'我的靈魂使命是真實的，我有勇氣活出它。',do:'今天花10分鐘寫下：「如果我不害怕失敗、不害怕他人的眼光，我最想做的一件事是什麼？」'},
+    sc:{name:'灵魂使命',sub:'天命之召',msg:'这张牌是在提醒你：你来到这个世界是有原因的。那个你一直知道「我应该做这件事」但还没做的事情——宇宙今天在问你：还要等多久？',aff:'我的灵魂使命是真实的，我有勇气活出它。',do:'今天花10分钟写下：「如果我不害怕失败、不害怕他人的眼光，我最想做的一件事是什么？」'},
+    en:{name:'Soul Mission',sub:'Call of Destiny',msg:'This card is reminding you: you came to this world for a reason. That thing you\'ve always known "I should do this" but haven\'t yet done — the universe asks you today: how much longer will you wait?',aff:'My soul mission is real. I have the courage to live it fully.',do:'Spend 10 minutes today writing: "If I had no fear of failure or others\' judgment, what is the ONE thing I most want to do?"'}},
+  {sym:'🔮',tc:{name:'直覺增強',sub:'第三眼開啟',msg:'今天你的直覺信號特別清晰。那個「感覺不對」的第一直覺，和那個「好像可以」的靈光一現，都是宇宙透過你的身體說話。相信它。',aff:'我信任我的直覺，它永遠在引導我走向最高的善。',do:'今天做一個你「感覺對」但大腦一直說不確定的決定，觀察結果。'},
+    sc:{name:'直觉增强',sub:'第三眼开启',msg:'今天你的直觉信号特别清晰。那个「感觉不对」的第一直觉，和那个「好像可以」的灵光一现，都是宇宙透过你的身体说话。相信它。',aff:'我信任我的直觉，它永远在引导我走向最高的善。',do:'今天做一个你「感觉对」但大脑一直说不确定的决定，观察结果。'},
+    en:{name:'Intuition Amplified',sub:'Third Eye Awakening',msg:'Today your intuitive signals are especially clear. That first "something feels off" instinct, and that sudden "maybe I can" flash — both are the universe speaking through your body. Trust it.',aff:'I trust my intuition. It always guides me toward the highest good.',do:'Today, make one decision that feels right but your mind keeps second-guessing. Observe the result.'}},
+  {sym:'🌺',tc:{name:'愛的顯化',sub:'心輪綻放',msg:'今天的能量充滿了愛的頻率。這不僅僅是浪漫的愛，而是對自己、對生命、對萬物的深深感謝與接納。當你的心輪開放，一切美好都能進入。',aff:'我值得被愛，我也是愛本身。我的心輪開放，接收所有的美好。',do:'今天對自己說三件你真心欣賞自己的事，並且相信它。'},
+    sc:{name:'爱的显化',sub:'心轮绽放',msg:'今天的能量充满了爱的频率。这不仅仅是浪漫的爱，而是对自己、对生命、对万物的深深感谢与接纳。当你的心轮开放，一切美好都能进入。',aff:'我值得被爱，我也是爱本身。我的心轮开放，接收所有的美好。',do:'今天对自己说三件你真心欣赏自己的事，并且相信它。'},
+    en:{name:'Love Manifesting',sub:'Heart Chakra Blooming',msg:'Today\'s energy is saturated with the frequency of love. Not just romantic love — but deep gratitude and acceptance for yourself, for life, for all things. When your heart center opens, all good things can enter.',aff:'I deserve love. I am love itself. My heart is open to receive all that is beautiful.',do:'Tell yourself 3 things you genuinely admire about yourself today — and believe them.'}},
+  {sym:'⚗️',tc:{name:'煉金過程',sub:'壓力即黃金',msg:'你現在感受到的壓力或挑戰，是「煉金」的過程，不是懲罰。烈火不是來燒毀你的，而是來提煉你的。在這個困難裡，隱藏著你最珍貴的禮物。',aff:'我擁抱挑戰，因為每一個困難都讓我更純淨、更有力量。',do:'今天找出當前挑戰中的一個「隱藏禮物」——這個困難教了你什麼？'},
+    sc:{name:'炼金过程',sub:'压力即黄金',msg:'你现在感受到的压力或挑战，是「炼金」的过程，不是惩罚。烈火不是来烧毁你的，而是来提炼你的。在这个困难里，隐藏着你最珍贵的礼物。',aff:'我拥抱挑战，因为每一个困难都让我更纯净、更有力量。',do:'今天找出当前挑战中的一个「隐藏礼物」——这个困难教了你什么？'},
+    en:{name:'Alchemical Process',sub:'Pressure Is Gold',msg:'The pressure or challenge you\'re feeling right now is the gold-refining process — not a punishment. The fierce fire hasn\'t come to destroy you; it\'s come to purify you. Hidden within this difficulty is your most precious gift.',aff:'I embrace challenges, for every difficulty makes me more pure and more powerful.',do:'Today, find one "hidden gift" in your current challenge. What is this difficulty teaching you?'}},
+  {sym:'🌅',tc:{name:'新局展開',sub:'黎明之始',msg:'不管昨天發生了什麼，今天是全新的開始。每一個「現在」都是一個重置的機會。宇宙不記帳，只看你此刻選擇的頻率。選擇重新開始，就從現在這一秒。',aff:'我選擇從現在這一刻重新開始，過去不定義我，我的力量在當下。',do:'今天做一件象徵性的「清零行動」：打掃一個角落、刪除手機裡的垃圾文件、還是只是洗一個很認真的澡——讓身體感受到清零。'},
+    sc:{name:'新局展开',sub:'黎明之始',msg:'不管昨天发生了什么，今天是全新的开始。每一个「现在」都是一个重置的机会。宇宙不记帐，只看你此刻选择的频率。选择重新开始，就从现在这一秒。',aff:'我选择从现在这一刻重新开始，过去不定义我，我的力量在当下。',do:'今天做一件象征性的「清零行动」：打扫一个角落、删除手机里的垃圾文件、还是只是洗一个很认真的澡——让身体感受到清零。'},
+    en:{name:'New Chapter Opens',sub:'Dawn of Beginning',msg:'Whatever happened yesterday, today is a completely fresh start. Every "now" is a reset opportunity. The universe keeps no ledger — it only sees the frequency you choose right now. Choose to begin again, from this very second.',aff:'I choose to begin again right now. The past doesn\'t define me. My power is in this present moment.',do:'Today, do one symbolic "reset action": clean a corner, delete junk files from your phone, or take a very intentional shower — let your body experience the reset.'}}
+];
+
+function drawCard(){
+  const l=getL();
+  const today=new Date();
+  const seed=today.getFullYear()*10000+(today.getMonth()+1)*100+today.getDate();
+  const idx=seed%CARDS.length;
+  const card=CARDS[idx];const cd=card[l];
+  const result=document.getElementById('card-result');
+  const btn=document.getElementById('draw-btn');
+
+  // Animate deck
+  document.querySelectorAll('.card-deck').forEach((c,i)=>{
+    c.style.transition='all .5s cubic-bezier(.34,1.56,.64,1)';
+    c.style.transform=`translateX(-50%) rotate(${(i-1)*15}deg) translateY(-${30+i*20}px)`;
+    setTimeout(()=>{c.style.transform='';c.style.transition='';},600);
+  });
+
+  btn.style.display='none';
+  result.innerHTML=`
+    <div class="card-display">
+      <div class="card-top">
+        <div class="card-symbol">${card.sym}</div>
+        <div class="card-name">${cd.name}</div>
+        <div class="card-subtitle">${cd.sub}</div>
+      </div>
+      <div class="card-body">
+        <div class="card-message">${cd.msg}</div>
+        <div class="card-affirmation">${cd.aff}</div>
+        <div class="card-action">
+          <div class="card-action-title">${l==='en'?'TODAY\'S ACTION':l==='sc'?'今日行动':'今日行動'}</div>
+          <div class="card-action-text">${cd.do}</div>
+        </div>
+      </div>
+    </div>
+    <button class="redraw-btn" onclick="resetCard()">
+      <span class="tc">↩ 明天再來</span><span class="sc">↩ 明天再来</span><span class="en">↩ Come back tomorrow</span>
+    </button>`;
+  result.classList.add('show');
+  result.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function resetCard(){
+  document.getElementById('card-result').classList.remove('show');
+  document.getElementById('card-result').innerHTML='';
+  document.getElementById('draw-btn').style.display='';
+}
+
+// Set card date
+const now=new Date();
+const dOpts={year:'numeric',month:'long',day:'numeric',weekday:'long'};
+document.getElementById('card-today-date').textContent=now.toLocaleDateString('zh-TW',dOpts);
+
+/* ─── TTS ─── */
+let ttsUtt=null,ttsPaused=false,ttsRate=.95,fontSize=15;
+
+function getLang(){
+  return document.body.classList.contains('lang-sc')?'zh-CN':document.body.classList.contains('lang-en')?'en-US':'zh-TW';
+}
+function getPageText(){
+  const activePage=document.querySelector('.page.active');
+  if(!activePage)return'';
+  const l=getL();
+  const nodes=activePage.querySelectorAll('.'+document.body.className.trim());
+  let t='';
+  nodes.forEach(n=>{const tx=n.innerText||n.textContent;if(tx&&tx.trim().length>2)t+=tx.trim()+'。';});
+  return t||activePage.innerText||'';
+}
+
+function ttsToggle(){
+  if(!('speechSynthesis'in window)){alert('瀏覽器不支援語音朗讀。');return;}
+  if(ttsPaused&&ttsUtt){
+    speechSynthesis.resume();ttsPaused=false;
+    document.getElementById('tts-play-btn').innerHTML='<span class="tc">⏸ 暫停</span><span class="sc">⏸ 暂停</span><span class="en">⏸ Pause</span>';
+    return;
+  }
+  if(speechSynthesis.speaking){
+    speechSynthesis.pause();ttsPaused=true;
+    document.getElementById('tts-play-btn').innerHTML='<span class="tc">▶ 繼續</span><span class="sc">▶ 继续</span><span class="en">▶ Resume</span>';
+    return;
+  }
+  speechSynthesis.cancel();
+  const text=getPageText();
+  if(!text)return;
+  ttsUtt=new SpeechSynthesisUtterance(text);
+  ttsUtt.lang=getLang();ttsUtt.rate=ttsRate;ttsUtt.pitch=1;
+  const voices=speechSynthesis.getVoices();
+  const lang=getLang();
+  const v=voices.find(x=>x.lang===lang&&x.localService)||voices.find(x=>x.lang.startsWith(lang.split('-')[0]));
+  if(v)ttsUtt.voice=v;
+  ttsUtt.onstart=()=>{
+    document.getElementById('tts-play-btn').innerHTML='<span class="tc">⏸ 暫停</span><span class="sc">⏸ 暂停</span><span class="en">⏸ Pause</span>';
+    document.getElementById('tts-stop-btn').style.display='';
+    document.getElementById('tts-prog').style.width='0';
+  };
+  ttsUtt.onend=ttsUtt.onerror=ttsStop;
+  ttsUtt.onboundary=e=>{
+    const p=Math.min(100,(e.charIndex/text.length)*100);
+    document.getElementById('tts-prog').style.width=p+'%';
+  };
+  speechSynthesis.speak(ttsUtt);
+}
+
+function ttsStop(){
+  speechSynthesis.cancel();ttsUtt=null;ttsPaused=false;
+  document.getElementById('tts-play-btn').innerHTML='<span class="tc">▶ 朗讀</span><span class="sc">▶ 朗读</span><span class="en">▶ Read</span>';
+  document.getElementById('tts-stop-btn').style.display='none';
+  document.getElementById('tts-prog').style.width='0';
+}
+
+function spdChange(v){
+  ttsRate=parseFloat(v);
+  document.getElementById('spd-val').textContent=parseFloat(v).toFixed(2)+'×';
+}
+
+function chFS(d){
+  fontSize=Math.min(20,Math.max(12,fontSize+d));
+  document.querySelectorAll('.prose p,.hw-text,.zf-tip,.callout,.z-action-list li,.kp-list li,.card-message,.card-action-text').forEach(el=>el.style.fontSize=fontSize+'px');
+  document.getElementById('fs-disp').textContent=fontSize+'px';
+}
+
+speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices();
+</script>
+
+</body>
+</html>
